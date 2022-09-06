@@ -1,0 +1,108 @@
+```set template default.html```
+```set title native_cursor cheat sheet```
+```set autoapi ext```
+```set intro
+This is a "cheat sheet" for "native_cursor" extension by YellowAfterlife.
+The extension can be found on [itch.io](https://yellowafterlife.itch.io/gamemaker-native-cursors)
+or [GM Marketplace](https://marketplace.yoyogames.com/assets/8796/native-cursors).
+```
+#[Management]() {
+	#[Concepts]() {
+		A cursor can be: --{
+		-	Windows: Up to 256x256.\
+			On select old configurations, cursors above 64x64 do not show up.
+		-	HTML5: Up to 128x128.\
+			MDN warns that this is entirely up to the browser and "unfitting" cursors will be ignored.
+		}
+		
+		Hotspot (hpx/hpy) is an equivalent of an origin for the cursor.
+		
+		`FPS` is animation speed in frames per second.
+	}
+	---
+	#[native_cursor_create_empty()->]() {
+		Creates and returns a new empty cursor.
+	}
+	#[native_cursor_destroy(cursor)]() {
+		Destroys a previously created cursor.
+	}
+	
+	Buffer conversions:
+	#[native_cursor_create_from_buffer(buffer, width, height, hpx, hpy, fps)->]() {
+		Creates a cursor from a buffer containing RGBA pixel data.
+	}
+	#[native_cursor_add_from_buffer(cursor, buffer, width, height, hpx, hpy)]() {
+		Adds a frame to a cursor from a buffer containing RGBA pixel data.
+	}
+	
+	Surface conversions:
+	#[native_cursor_create_from_surface(surface, hotspot_x, hotspot_y, ?fps)->]() {
+		Creates a cursor from a surface.
+	}
+	#[native_cursor_add_from_surface(cursor, surface, hotspot_x, hotspot_y)]() {
+		Adds a frame to a cursor from a surface.
+	}
+	
+	Loading native cursors from files:
+	```setmd file_note
+	*Note:* This takes a `CUR`/`ANI` file, not an image.
+	
+	*Note:* An `ANI` cursor doesn't currently get split into frames on load, so trying to append frames to it will not work like you expect.
+	```
+	#[native_cursor_create_from_file(path)->]() {
+		Loads a cursor from a file.
+		
+		%[file_note]
+	}
+	#[native_cursor_add_from_file(cursor, path)->]() {
+		Appends a frame to a cursor from a file.
+		
+		%[file_note]
+	}
+	
+	Sprite conversions:
+	#[native_cursor_create_from_sprite(sprite, ?frame, ?fps)->]() {
+		Creates a cursor from a sprite.
+		
+		If `frame` is not specified or is `undefined`, all frames will be added.\
+		Otherwise a single frame is used.
+		
+		If `fps` is not specified, game's framerate is used.
+	}
+	#[native_cursor_create_from_sprite_ext(sprite, frame, xscale, yscale, color, alpha, ?fps)->]() {
+		Like above, but with scale/color/alpha.
+		
+		You can use `gpu_set_texfilter` (GMS2) or `texture_set_interpolation` (GMS1) to control how the images will be scaled.
+	}
+	#[native_cursor_add_from_sprite_ext(cursor, sprite, frame, xscale, yscale, color, alpha)]() {
+		Adds a sprite frame to a cursor.
+	}
+}
+#[State]() {
+	#[native_cursor_update()]() {
+		You should call this once per frame or your cursors won't animate when the mouse isn't moving.
+	}
+	---
+	#[native_cursor_set(cursor)]() {
+		Switches the cursor to a specified one.
+	}
+	#[native_cursor_reset()]() {
+		Reverts to default GameMaker cursor behavior.
+	}
+	---
+	#[native_cursor_get_frame(cursor)->int]() {
+		Returns the current frame of a cursor.
+		
+		Note that this is calculated in real-time.
+	}
+	#[native_cursor_set_frame(cursor, frame:int)]() {
+		Changes the current frame for a cursor.
+	}
+	---
+	#[native_cursor_get_framerate(cursor)->number]() {
+		Returns current animation speed for a cursor.
+	}
+	#[native_cursor_set_framerate(cursor, fps:int)]() {
+		Changes animation speed for a cursor.
+	}
+}

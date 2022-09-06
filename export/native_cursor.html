@@ -1,0 +1,521 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<title>native_cursor cheat sheet</title>
+<meta name="viewport" content="width=device-width" />
+<meta name="livenode" content="#doc" />
+<meta property="theme-color" content="<section><header>FFF037</header><article></article></section>" />
+<meta property="og:type" content="article" />
+<meta property="og:locale" content="en_us" />
+<meta property="og:site_name" content="YellowAfterlife" />
+<meta property="og:title" content="native_cursor cheat sheet" />
+<script type="text/javascript">
+if (document.location.host == "yal.cc" && location.protocol == "http:") {
+	document.location.protocol = "https:";
+}
+</script>
+<style type="text/css">body, #doc tt, #doc code {
+	font: 15px 'Open Sans', sans-serif;
+	line-height: 1.35;
+}
+body {
+	margin: 0;
+}
+.main {
+	width: 100%;
+	min-height: 100%;
+	min-height: 100vh;
+	background-color: #f5f7f9;
+}
+.page {
+	max-width: 656px;
+	background: #ffffff;
+	margin: 0 auto;
+	padding: 8px;
+	box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+	min-height: 100%;
+	min-height: 100vh;
+	box-sizing: border-box;
+}
+.page > p:first-child {
+	margin-top: 0;
+}
+#doc, #doc ul, #doc ol {
+	padding-left: 0;
+	margin: 0;
+}
+#doc article > ul, #doc article > ol {
+	padding-left: 20px;
+}
+#doc article ul li {
+	list-style: disc;
+	list-style-image: url('data:image/svg+xml;base256,<?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" width="20px" height="1em" viewBox="0 0 20px 1em"><circle cx="17px" cy="0.675em" r="2px"/></svg>'); 
+}
+
+#doc header {
+	margin: 0;
+	font-weight: 700;
+	font-size: 100%;
+	color: #458;
+	border-left: 2px solid #f3f3f3;/* #f9f9f9*/
+	padding-left: 4px;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	cursor: pointer;
+}
+#doc header a {
+	outline: none;
+	text-decoration: none;
+	color: #458;
+}
+#doc header::before {
+	display: inline-block;
+	content: "+";
+	font: 12px monospace;
+	border: 1px solid #458;
+	line-height: 11px;
+	height: 11px;
+	width: 11px;
+	text-align: center;
+	border-radius: 50%;
+	margin-right: 4px;
+	vertical-align: middle;
+	position: relative;
+	top: -1px;
+}
+#doc section.open > header::before {
+	content: "-";
+}
+#doc section.empty > header::before {
+	content: " "; /*"·"*/
+}
+#doc header:hover {
+	border-left-color: #f3f3f3;
+	background: #f3f3f3;
+}
+#doc header .ret-arrow {
+	font-weight: normal;
+	margin: 0 0.1em;
+}
+
+#doc a.broken {
+	color: red;
+}
+#doc p, .intro p {
+	margin: 0;
+}
+#doc p + p, .intro p + p, #doc p.pad, .display-controls {
+	margin-top: 0.5em;
+}
+#doc img {
+	max-width: 100%;
+}
+#doc h3 {
+	margin: 0.25em 0;
+	font-size: 125%;
+	font-weight: normal;
+	border-bottom: 1px solid #ccc;
+}
+
+#doc article, #doc ul {
+	padding-left: 20px;
+	border-left: 2px solid #f3f3f3;
+}
+#doc article {
+	padding-top: 0.25em;
+	padding-bottom: 0.5em;
+}
+#doc tt {
+	font-weight: bold;
+}
+#doc code {
+	display: inline-block;
+	background: #FFFBE4;
+	font-family: Consolas, Ubuntu Mono, Dejavu Sans Mono, Lucida Console, monospace;
+	font-weight: normal;
+	font-size: 12px;
+	line-height: 16px;
+	padding: 0 2px;
+	border: 1px solid #E6E0C4;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+	max-width: 100%;
+	word-break: break-word;
+}
+
+#doc table {
+	border-spacing: 0;
+	color: currentColor;
+}
+#doc table, #doc table td, #doc table th {
+	border: 1px solid #f3f3f3;
+}
+#doc table td, #doc table th {
+	padding: 0.1em 0.5em;
+}
+#doc pre {
+	font-family: Consolas, Dejavu Sans Mono, Segoe UI Mono, Ubuntu Mono, Lucida Console, monospace;
+	font-size: 9pt;
+	line-height: 1.25;
+	background: white;
+	padding: 4px 2px 4px 10px;
+	margin: 0;
+	-moz-tab-size: 4;
+	tab-size: 4;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+#doc pre a {
+	text-decoration: none;
+}
+#doc pre a.uf {
+	background-color: #f7f0ff;
+}
+#doc pre a.kw {
+	background-color: #f0f7ff;
+}
+#doc pre a.sf, #doc pre a.sv {
+	background-color: #fff3f0;
+}
+#doc pre a:hover {
+	text-decoration: underline;
+}
+#doc abbr[title] {
+	text-decoration: underline;
+	-webkit-text-decoration-color: #bbb;
+	text-decoration-color: #bbb;
+	-webkit-text-decoration-style: double;
+	text-decoration-style: double;
+}
+#doc hr {
+	margin: 0.5em 0;
+	margin-right: 1em;
+	border: 0;
+	border-top: 2px dashed #f3f3f3;
+}
+#doc section + hr {
+	margin: 0;
+	height: 1em;
+	border: 1px solid #f3f3f3;
+	border-width: 1px 0 1px 0;
+}
+#doc section {
+	border-top: 1px solid #f3f3f3;
+	margin-top: 0.3em;
+}
+#doc section:first-child {
+	margin-top: 0em;
+}
+#doc section:last-child {
+	border-bottom: 1px solid #f3f3f3;
+}
+#doc section + section, #doc hr + section {
+	border-top: 0;
+	margin-top: 0;
+}
+#doc section + p {
+	border-top: 1px solid #f3f3f3;
+	padding-top: 0.3em;
+}
+/* delay display until load */
+#doc[ready] section:not(.open) > article {
+	display: none;
+}</style>
+<style type="text/css" id="night_css">#night { display: none }
+label[for="night"] {
+	color: blue;
+	text-decoration: underline;
+	cursor: pointer;
+}
+#night:checked + .main {
+	background-color: #424242;
+}
+#night:checked + .main .page {
+	background-color: #1c1c1c;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+	color: white;
+}
+#night:checked + .main a,
+#night:checked + .main a:visited,
+#night:checked + .main #doc header,
+#night:checked + .main label[for="night"] {
+	color: #9DEC76;
+}
+#night:checked + .main #doc header:before,
+#night:checked + .main #doc h3 {
+	border-color: #9DEC76
+}
+#night:checked + .main #doc header,
+#night:checked + .main #doc header:hover,
+#night:checked + .main #doc article,
+#night:checked + .main #doc section,
+#night:checked + .main #doc section + p,
+#night:checked + .main #doc hr,
+#night:checked + .main #doc ul,
+#night:checked + .main #doc table,
+#night:checked + .main #doc table td,
+#night:checked + .main #doc table th
+{
+	border-color: rgba(205,225,255,0.1);
+}
+#night:checked + .main #doc header:hover,
+#night:checked + .main #doc .asset:hover {
+	background: rgba(205,225,255,0.1);
+}
+#night:checked + .main article ul li {
+	list-style-image: url('data:image/svg+xml;base256,<?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" width="20px" height="1em" viewBox="0 0 20px 1em"><circle cx="17px" cy="0.675em" r="2px" fill="white"/></svg>'); 
+}
+#night:checked + .main pre {
+	color: #cccccc;
+	background: #000000;
+	border: 1px solid #3E4757;
+}
+#night:checked + .main #doc code {
+	background-color: #000;
+	border-color: #5b7c9f;
+	color: white;
+}</style>
+<style type="text/css" id="print_css">@media print {
+	.main { background-color: transparent }
+	.display-controls { display: none; }
+	.page { width: 100%; box-shadow: none; }
+	#doc header::before,
+	#doc section.open header::before	{
+		content: "~";
+	}
+	#doc { display: inherit }
+	#doc section:not(.open) > article,
+	#doc[ready] section:not(.open) > article {
+		display: inherit;
+	}
+}</style>
+<noscript><style>#doc header::before {
+	content: "~";
+}
+#doc header:hover {
+	border-left-color: #f3f3f3;
+	background: inherit;
+}
+#doc { display: inherit }
+#doc section:not(.open) > article {
+	display: inherit;
+}</style></noscript>
+</head><body>
+<input type="checkbox" id="night" checked/>
+<div class="main ">
+<script type="text/javascript">(function() {
+	var night = document.getElementById("night");
+	var path = "docmd night mode";
+	var ls = window.localStorage;
+	if (ls) {
+		night.checked = ls.getItem(path) == "true";
+		night.onchange = function(_) {
+			ls.setItem(path, "" + night.checked);
+		};
+	}
+})();</script>
+<main class="page">
+<section class="intro">This is a "cheat sheet" for "native_cursor" extension by YellowAfterlife.
+The extension can be found on <a href="https://yellowafterlife.itch.io/gamemaker-native-cursors">itch.io</a>
+or <a href="https://marketplace.yoyogames.com/assets/8796/native-cursors">GM Marketplace</a>.</section><section class="display-controls">
+Click on sections to expand/collapse them.<br>Quick display controls:
+<a href="#" onclick="opt_none(); return false">Categories</a>
+&middot; <a href="#" onclick="opt_list(); return false">Sections</a>
+&middot; <a href="#" onclick="opt_all(); return false">Everything</a>
+&middot; <label for="night">Toggle night mode</label><br/>
+</section><section id="doc">
+<!--<doc--><p><p>
+
+<style>
+.main { background-color: #899FC6 }
+.page { box-shadow: 0 0 8px rgba(0, 0, 0, 0.3) }
+#night:checked + .main { background-color: #405070 }
+#night:checked + .main .page { background-color: #1A202D }
+</style>
+
+
+
+
+
+</p><section><header id="Management"><a href="#Management" title="(permalink)">Management</a></header><article><section><header id="Concepts"><a href="#Concepts" title="(permalink)">Concepts</a></header><article><p>
+		A cursor can be: </p><ul>
+		<li>	Windows: Up to 256x256.<br/>
+			On select old configurations, cursors above 64x64 do not show up.
+		</li><li>	HTML5: Up to 128x128.<br/>
+			MDN warns that this is entirely up to the browser and "unfitting" cursors will be ignored.
+		</li></ul><p>
+		Hotspot (hpx/hpy) is an equivalent of an origin for the cursor.
+		</p><p>
+		<code>FPS</code> is animation speed in frames per second.
+	</p></article></section><hr/><section><header id="native_cursor_create_empty"><a href="#native_cursor_create_empty" title="(permalink)">native_cursor_create_empty()&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
+		Creates and returns a new empty cursor.
+	</p></article></section><section><header id="native_cursor_destroy"><a href="#native_cursor_destroy" title="(permalink)">native_cursor_destroy(cursor)</a></header><article><p>
+		Destroys a previously created cursor.
+	</p></article></section><p>
+	Buffer conversions:
+	</p><section><header id="native_cursor_create_from_buffer"><a href="#native_cursor_create_from_buffer" title="(permalink)">native_cursor_create_from_buffer(buffer, width, height, hpx, hpy, fps)&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
+		Creates a cursor from a buffer containing RGBA pixel data.
+	</p></article></section><section><header id="native_cursor_add_from_buffer"><a href="#native_cursor_add_from_buffer" title="(permalink)">native_cursor_add_from_buffer(cursor, buffer, width, height, hpx, hpy)</a></header><article><p>
+		Adds a frame to a cursor from a buffer containing RGBA pixel data.
+	</p></article></section><p>
+	Surface conversions:
+	</p><section><header id="native_cursor_create_from_surface"><a href="#native_cursor_create_from_surface" title="(permalink)">native_cursor_create_from_surface(surface, hotspot_x, hotspot_y, ?fps)&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
+		Creates a cursor from a surface.
+	</p></article></section><section><header id="native_cursor_add_from_surface"><a href="#native_cursor_add_from_surface" title="(permalink)">native_cursor_add_from_surface(cursor, surface, hotspot_x, hotspot_y)</a></header><article><p>
+		Adds a frame to a cursor from a surface.
+	</p></article></section><p>
+	Loading native cursors from files:
+	
+	</p><section><header id="native_cursor_create_from_file"><a href="#native_cursor_create_from_file" title="(permalink)">native_cursor_create_from_file(path)&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
+		Loads a cursor from a file.
+		</p><p>
+		<b>Note:</b> This takes a <code>CUR</code>/<code>ANI</code> file, not an image.
+	</p><p>
+	<b>Note:</b> An <code>ANI</code> cursor doesn't currently get split into frames on load, so trying to append frames to it will not work like you expect.
+	</p></article></section><section><header id="native_cursor_add_from_file"><a href="#native_cursor_add_from_file" title="(permalink)">native_cursor_add_from_file(cursor, path)&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
+		Appends a frame to a cursor from a file.
+		</p><p>
+		<b>Note:</b> This takes a <code>CUR</code>/<code>ANI</code> file, not an image.
+	</p><p>
+	<b>Note:</b> An <code>ANI</code> cursor doesn't currently get split into frames on load, so trying to append frames to it will not work like you expect.
+	</p></article></section><p>
+	Sprite conversions:
+	</p><section><header id="native_cursor_create_from_sprite"><a href="#native_cursor_create_from_sprite" title="(permalink)">native_cursor_create_from_sprite(sprite, ?frame, ?fps)&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
+		Creates a cursor from a sprite.
+		</p><p>
+		If <code>frame</code> is not specified or is <code>undefined</code>, all frames will be added.<br/>
+		Otherwise a single frame is used.
+		</p><p>
+		If <code>fps</code> is not specified, game's framerate is used.
+	</p></article></section><section><header id="native_cursor_create_from_sprite_ext"><a href="#native_cursor_create_from_sprite_ext" title="(permalink)">native_cursor_create_from_sprite_ext(sprite, frame, xscale, yscale, color, alpha, ?fps)&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
+		Like above, but with scale/color/alpha.
+		</p><p>
+		You can use <code>gpu_set_texfilter</code> (GMS2) or <code>texture_set_interpolation</code> (GMS1) to control how the images will be scaled.
+	</p></article></section><section><header id="native_cursor_add_from_sprite_ext"><a href="#native_cursor_add_from_sprite_ext" title="(permalink)">native_cursor_add_from_sprite_ext(cursor, sprite, frame, xscale, yscale, color, alpha)</a></header><article><p>
+		Adds a sprite frame to a cursor.
+	</p></article></section></article></section><section><header id="State"><a href="#State" title="(permalink)">State</a></header><article><section><header id="native_cursor_update"><a href="#native_cursor_update" title="(permalink)">native_cursor_update()</a></header><article><p>
+		You should call this once per frame or your cursors won't animate when the mouse isn't moving.
+	</p></article></section><hr/><section><header id="native_cursor_set"><a href="#native_cursor_set" title="(permalink)">native_cursor_set(cursor)</a></header><article><p>
+		Switches the cursor to a specified one.
+	</p></article></section><section><header id="native_cursor_reset"><a href="#native_cursor_reset" title="(permalink)">native_cursor_reset()</a></header><article><p>
+		Reverts to default GameMaker cursor behavior.
+	</p></article></section><hr/><section><header id="native_cursor_get_frame"><a href="#native_cursor_get_frame" title="(permalink)">native_cursor_get_frame(cursor)&#8203;<span class="ret-arrow">&#10140;</span>int</a></header><article><p>
+		Returns the current frame of a cursor.
+		</p><p>
+		Note that this is calculated in real-time.
+	</p></article></section><section><header id="native_cursor_set_frame"><a href="#native_cursor_set_frame" title="(permalink)">native_cursor_set_frame(cursor, frame:int)</a></header><article><p>
+		Changes the current frame for a cursor.
+	</p></article></section><hr/><section><header id="native_cursor_get_framerate"><a href="#native_cursor_get_framerate" title="(permalink)">native_cursor_get_framerate(cursor)&#8203;<span class="ret-arrow">&#10140;</span>number</a></header><article><p>
+		Returns current animation speed for a cursor.
+	</p></article></section><section><header id="native_cursor_set_framerate"><a href="#native_cursor_set_framerate" title="(permalink)">native_cursor_set_framerate(cursor, fps:int)</a></header><article><p>
+		Changes animation speed for a cursor.
+	</p></article></section></article></section></p><!--doc>-->
+</section></main></div>
+<script type="text/javascript">(function() {
+	var doc, headers;
+	//
+	var path = "native_cursor cheat sheet";
+	var state = null;
+	if (window.localStorage && JSON.parse) {
+		state = window.localStorage.getItem(path);
+		state = state ? JSON.parse(state) : { };
+		if (state == null) state = { };
+	}
+	var isLocal = (location.host.indexOf("localhost") == 0);
+	//
+	function h3bind(h3) {
+		var node = h3.parentNode;
+		var snip = node.children[1];
+		var id = h3.id || h3.textContent;
+		h3.snip = snip;
+		h3.doc_set = function(z) {
+			if (z) node.classList.add("open"); else node.classList.remove("open");
+			if (state) {
+				state[id] = z;
+				window.localStorage.setItem(path, JSON.stringify(state));
+			}
+		}
+		h3.doc_hide = function() {
+			this.doc_set(false);
+		}
+		h3.doc_show = function() {
+			this.doc_set(true);
+		}
+		h3.onclick = function(_) {
+			var seen = !node.classList.contains("open");
+			h3.doc_set(seen);
+			return false;
+		};
+	}
+	function getHashFunc(id) {
+		var node = document.getElementById(id);
+		if (node == null) return null;
+		return function(e) {
+			while (node && node != doc) {
+				if (node.classList.contains("item")) {
+					node.classList.add("open");
+				}
+				node = node.parentElement;
+			}
+		};
+	}
+	// Display helpers:
+	window.opt_none = function() {
+		for (var li = 0; li < headers.length; li++) headers[li].doc_hide();
+	};
+	window.opt_list = function() {
+		for (var li = 0; li < headers.length; li++) {
+			var h3 = headers[li];
+			if (h3.parentNode.parentNode != doc) {
+				h3.doc_hide();
+			} else h3.doc_show();
+		}
+	};
+	window.opt_all = function() {
+		for (var li = 0; li < headers.length; li++) headers[li].doc_show();
+	};
+	window.live_post = function() {
+		doc = document.getElementById("doc");
+		headers = doc.getElementsByTagName("header");
+		//
+		for (var i = 0; i < headers.length; i++) h3bind(headers[i]);
+		// Clicks in document expand the related section:
+		var anchors = doc.getElementsByTagName("a");
+		for (var i = 0; i < anchors.length; i++) {
+			var anchor = anchors[i];
+			if (anchor.classList.contains("header")) continue;
+			var href = anchor.getAttribute("href");
+			if (href[0] == "#") {
+				var fn = getHashFunc(href.substr(1));
+				if (!fn) {
+					anchor.classList.add("broken");
+					anchor.title = "(section missing)";
+				} else anchor.addEventListener("click", fn);
+			}
+		}
+		//
+		for (var li = 0; li < headers.length; li++) {
+			var h3 = headers[li];
+			var val = state ? state[h3.id || h3.textContent] : null;
+			if (val == null) val = isLocal || h3.parentNode.parentNode == doc;
+			if (val) h3.doc_show(); else h3.doc_hide();
+		}
+	};
+	window.live_post();
+	//
+	(function() {
+		var hash = document.location.hash;
+		if (hash) {
+			var _hash = hash.substr(1);
+			getHashFunc(_hash)();
+			setTimeout(function() {
+				document.location.hash = hash + " ";
+				setTimeout(function() {
+					document.location.hash = hash;
+				}, 100);
+			}, 100);
+		}
+	})();
+	//
+	doc.setAttribute("ready", "");
+	})();</script>
+</body></html>

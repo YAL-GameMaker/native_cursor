@@ -1,0 +1,10 @@
+{
+    "builderSettings": {
+        "runtimeVersion": null
+    },
+    "linterPrefs": {
+        "specTypeInst": true,
+        "specTypeInstSubTopLevel": true,
+        "specTypeVar": true
+    }
+}
