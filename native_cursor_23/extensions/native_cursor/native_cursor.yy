@@ -22,53 +22,53 @@
     {"filename":"native_cursor.dll","origname":"extensions\\native_cursor.dll","init":"","final":"","kind":1,"uncompress":false,"functions":[
         {"externalName":"native_cursor_create_from_buffer_raw","kind":11,"help":"","hidden":true,"returnType":2,"argCount":2,"args":[
             1,
-            2,
+            1,
           ],"resourceVersion":"1.0","name":"native_cursor_create_from_buffer_raw","tags":[],"resourceType":"GMExtensionFunction",},
         {"externalName":"native_cursor_add_from_buffer_raw","kind":11,"help":"","hidden":true,"returnType":2,"argCount":2,"args":[
             1,
-            2,
+            1,
           ],"resourceVersion":"1.0","name":"native_cursor_add_from_buffer_raw","tags":[],"resourceType":"GMExtensionFunction",},
         {"externalName":"native_cursor_create_empty_raw","kind":11,"help":"","hidden":true,"returnType":2,"argCount":2,"args":[
             1,
-            2,
+            1,
           ],"resourceVersion":"1.0","name":"native_cursor_create_empty_raw","tags":[],"resourceType":"GMExtensionFunction",},
         {"externalName":"native_cursor_create_from_full_path_raw","kind":11,"help":"","hidden":true,"returnType":2,"argCount":3,"args":[
             1,
-            2,
+            1,
             1,
           ],"resourceVersion":"1.0","name":"native_cursor_create_from_full_path_raw","tags":[],"resourceType":"GMExtensionFunction",},
         {"externalName":"native_cursor_add_from_full_path_raw","kind":11,"help":"","hidden":true,"returnType":2,"argCount":3,"args":[
             1,
-            2,
+            1,
             1,
           ],"resourceVersion":"1.0","name":"native_cursor_add_from_full_path_raw","tags":[],"resourceType":"GMExtensionFunction",},
         {"externalName":"native_cursor_set_raw","kind":11,"help":"","hidden":true,"returnType":2,"argCount":2,"args":[
             1,
-            2,
+            1,
           ],"resourceVersion":"1.0","name":"native_cursor_set_raw","tags":[],"resourceType":"GMExtensionFunction",},
         {"externalName":"native_cursor_reset_raw","kind":11,"help":"","hidden":true,"returnType":2,"argCount":2,"args":[
             1,
-            2,
+            1,
           ],"resourceVersion":"1.0","name":"native_cursor_reset_raw","tags":[],"resourceType":"GMExtensionFunction",},
         {"externalName":"native_cursor_get_frame_raw","kind":11,"help":"","hidden":true,"returnType":2,"argCount":2,"args":[
             1,
-            2,
+            1,
           ],"resourceVersion":"1.0","name":"native_cursor_get_frame_raw","tags":[],"resourceType":"GMExtensionFunction",},
         {"externalName":"native_cursor_set_frame_raw","kind":11,"help":"","hidden":true,"returnType":2,"argCount":2,"args":[
             1,
-            2,
+            1,
           ],"resourceVersion":"1.0","name":"native_cursor_set_frame_raw","tags":[],"resourceType":"GMExtensionFunction",},
         {"externalName":"native_cursor_get_framerate_raw","kind":11,"help":"","hidden":true,"returnType":2,"argCount":2,"args":[
             1,
-            2,
+            1,
           ],"resourceVersion":"1.0","name":"native_cursor_get_framerate_raw","tags":[],"resourceType":"GMExtensionFunction",},
         {"externalName":"native_cursor_set_framerate_raw","kind":11,"help":"","hidden":true,"returnType":2,"argCount":2,"args":[
             1,
-            2,
+            1,
           ],"resourceVersion":"1.0","name":"native_cursor_set_framerate_raw","tags":[],"resourceType":"GMExtensionFunction",},
         {"externalName":"native_cursor_destroy_raw","kind":11,"help":"","hidden":true,"returnType":2,"argCount":2,"args":[
             1,
-            2,
+            1,
           ],"resourceVersion":"1.0","name":"native_cursor_destroy_raw","tags":[],"resourceType":"GMExtensionFunction",},
         {"externalName":"native_cursor_update","kind":1,"help":"native_cursor_update()","hidden":false,"returnType":2,"argCount":0,"args":[],"resourceVersion":"1.0","name":"native_cursor_update","tags":[],"resourceType":"GMExtensionFunction",},
         {"externalName":"native_cursor_check_full_path","kind":11,"help":"","hidden":true,"returnType":2,"argCount":1,"args":[

@@ -58,7 +58,7 @@ var _sprite = argument[0], _frame = argument[1], _xscale = argument[2], _yscale 
 var _fps = argument_count > 6 ? argument[6] : undefined;
 var _cursor = native_cursor_create_empty();
 if (_fps == undefined) {
-    // GMS >= 2:
+    // GMS >= 2.0:
     if (sprite_get_speed_type(_sprite) != 0) {
         _fps = game_get_speed(gamespeed_fps) * sprite_get_speed(_sprite);
     } else {
@@ -79,7 +79,7 @@ var _width = sprite_get_width(_sprite);
 var _height = sprite_get_height(_sprite);
 var _surf = surface_create(ceil(_width * _xscale), ceil(_height * _yscale));
 var _xoffset = sprite_get_xoffset(_sprite) * _xscale;
-var _yoffset = sprite_get_xoffset(_sprite) * _yscale;
+var _yoffset = sprite_get_yoffset(_sprite) * _yscale;
 var _start, _end;
 if (_frame == undefined) {
     _start = 0;
@@ -91,13 +91,13 @@ if (_frame == undefined) {
 for (var i = _start; i <= _end; i++) {
     surface_set_target(_surf);
     draw_clear_alpha(c_black, 0);
-    // GMS >= 2:
+    // GMS >= 2.0:
     gpu_set_blendmode_ext(bm_one, bm_zero);
     /*/
     draw_set_blend_mode_ext(bm_one, bm_zero);
     //*/
     draw_sprite_ext(_sprite, i, _xoffset, _yoffset, _xscale, _yscale, 0, _color, _alpha);
-    // GMS >= 2:
+    // GMS >= 2.0:
     gpu_set_blendmode(bm_normal);
     /*/
     draw_set_blend_mode(bm_normal);
@@ -106,6 +106,7 @@ for (var i = _start; i <= _end; i++) {
     
     native_cursor_add_from_surface(_cursor, _surf, _xoffset, _yoffset);
 }
+surface_free(_surf);
 
 #define native_cursor_create_from_surface
 /// (surface, hotspot_x, hotspot_y, ?fps)->
