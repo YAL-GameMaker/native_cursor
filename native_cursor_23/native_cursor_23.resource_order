@@ -1,0 +1,26 @@
+{
+  "FolderOrderSettings": [
+    {"name":"Animation Curves","order":1,"path":"folders/Animation Curves.yy",},
+    {"name":"Extensions","order":23,"path":"folders/Extensions.yy",},
+    {"name":"Fonts","order":13,"path":"folders/Fonts.yy",},
+    {"name":"Notes","order":21,"path":"folders/Notes.yy",},
+    {"name":"Objects","order":17,"path":"folders/Objects.yy",},
+    {"name":"Paths","order":7,"path":"folders/Paths.yy",},
+    {"name":"Rooms","order":19,"path":"folders/Rooms.yy",},
+    {"name":"Scripts","order":9,"path":"folders/Scripts.yy",},
+    {"name":"Sequences","order":1,"path":"folders/Sequences.yy",},
+    {"name":"Shaders","order":11,"path":"folders/Shaders.yy",},
+    {"name":"Sounds","order":5,"path":"folders/Sounds.yy",},
+    {"name":"Sprites","order":1,"path":"folders/Sprites.yy",},
+    {"name":"Tile Sets","order":3,"path":"folders/Tile Sets.yy",},
+    {"name":"Timelines","order":15,"path":"folders/Timelines.yy",},
+  ],
+  "ResourceOrderSettings": [
+    {"name":"trace","order":1,"path":"scripts/trace/trace.yy",},
+    {"name":"fnt_test","order":1,"path":"fonts/fnt_test/fnt_test.yy",},
+    {"name":"native_cursor_v1_compat","order":2,"path":"extensions/native_cursor_v1_compat/native_cursor_v1_compat.yy",},
+    {"name":"rm_test","order":1,"path":"rooms/rm_test/rm_test.yy",},
+    {"name":"spr_cursor_stripes","order":1,"path":"sprites/spr_cursor_stripes/spr_cursor_stripes.yy",},
+    {"name":"native_cursor","order":1,"path":"extensions/native_cursor/native_cursor.yy",},
+  ],
+}
