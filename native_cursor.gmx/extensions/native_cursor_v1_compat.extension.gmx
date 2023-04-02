@@ -66,7 +66,7 @@
         <function>
           <name>window_set_cursor_sprite</name>
           <externalName>window_set_cursor_sprite</externalName>
-          <kind>2</kind>
+          <kind>1</kind>
           <help>window_set_cursor_sprite(sprite, subimg)</help>
           <returnType>2</returnType>
           <argCount>2</argCount>
@@ -78,7 +78,7 @@
         <function>
           <name>window_set_cursor_sprite_ext</name>
           <externalName>window_set_cursor_sprite_ext</externalName>
-          <kind>2</kind>
+          <kind>1</kind>
           <help>window_set_cursor_sprite_ext(sprite, subimg, image_xscale, image_yscale, image_blend, image_alpha)</help>
           <returnType>2</returnType>
           <argCount>6</argCount>
@@ -94,7 +94,7 @@
         <function>
           <name>window_set_cursor_surface</name>
           <externalName>window_set_cursor_surface</externalName>
-          <kind>2</kind>
+          <kind>1</kind>
           <help>window_set_cursor_surface(surface, xoffset, yoffset)</help>
           <returnType>2</returnType>
           <argCount>3</argCount>

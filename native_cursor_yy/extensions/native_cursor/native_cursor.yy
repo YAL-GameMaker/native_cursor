@@ -44,7 +44,7 @@
                     "argCount": 2,
                     "args": [
                         1,
-                        2
+                        1
                     ],
                     "externalName": "native_cursor_create_from_buffer_raw",
                     "help": "",
@@ -60,7 +60,7 @@
                     "argCount": 2,
                     "args": [
                         1,
-                        2
+                        1
                     ],
                     "externalName": "native_cursor_add_from_buffer_raw",
                     "help": "",
@@ -76,7 +76,7 @@
                     "argCount": 2,
                     "args": [
                         1,
-                        2
+                        1
                     ],
                     "externalName": "native_cursor_create_empty_raw",
                     "help": "",
@@ -92,7 +92,7 @@
                     "argCount": 3,
                     "args": [
                         1,
-                        2,
+                        1,
                         1
                     ],
                     "externalName": "native_cursor_create_from_full_path_raw",
@@ -109,7 +109,7 @@
                     "argCount": 3,
                     "args": [
                         1,
-                        2,
+                        1,
                         1
                     ],
                     "externalName": "native_cursor_add_from_full_path_raw",
@@ -126,7 +126,7 @@
                     "argCount": 2,
                     "args": [
                         1,
-                        2
+                        1
                     ],
                     "externalName": "native_cursor_set_raw",
                     "help": "",
@@ -142,7 +142,7 @@
                     "argCount": 2,
                     "args": [
                         1,
-                        2
+                        1
                     ],
                     "externalName": "native_cursor_reset_raw",
                     "help": "",
@@ -158,7 +158,7 @@
                     "argCount": 2,
                     "args": [
                         1,
-                        2
+                        1
                     ],
                     "externalName": "native_cursor_get_frame_raw",
                     "help": "",
@@ -174,7 +174,7 @@
                     "argCount": 2,
                     "args": [
                         1,
-                        2
+                        1
                     ],
                     "externalName": "native_cursor_set_frame_raw",
                     "help": "",
@@ -190,7 +190,7 @@
                     "argCount": 2,
                     "args": [
                         1,
-                        2
+                        1
                     ],
                     "externalName": "native_cursor_get_framerate_raw",
                     "help": "",
@@ -206,7 +206,7 @@
                     "argCount": 2,
                     "args": [
                         1,
-                        2
+                        1
                     ],
                     "externalName": "native_cursor_set_framerate_raw",
                     "help": "",
@@ -222,7 +222,7 @@
                     "argCount": 2,
                     "args": [
                         1,
-                        2
+                        1
                     ],
                     "externalName": "native_cursor_destroy_raw",
                     "help": "",
