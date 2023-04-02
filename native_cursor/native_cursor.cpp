@@ -285,7 +285,11 @@ dllg void native_cursor_set(gml_ptr<native_cursor> cursor) {
 	native_cursor_apply_impl(false);
 }
 dllg void native_cursor_reset() {
+	if (current.cursor) {
+		current.cursor->timeOffset = GetTickCount64() - current.cursor->timeStart;
+	}
 	current.cursor = nullptr;
+	current.hcursor = nullptr;
 	SetCursor(NULL);
 	CallWindowProc(wndproc_base, game_window, WM_SETCURSOR, current.lastWPARAM, current.lastLPARAM);
 }
