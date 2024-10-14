@@ -1,10 +1,14 @@
 {
     "builderSettings": {
-        "runtimeVersion": null
+        "runtimeVersion": "runtime-2023.8.2.152"
     },
     "linterPrefs": {
         "specTypeInst": true,
         "specTypeInstSubTopLevel": true,
         "specTypeVar": true
-    }
+    },
+    "rawDirectories": [
+        ".",
+        "..\/export\/native_cursor.dmd"
+    ]
 }

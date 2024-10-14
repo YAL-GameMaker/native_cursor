@@ -18,56 +18,59 @@
   "exportToGame": true,
   "extensionVersion": "1.0.0",
   "files": [
-    {"resourceType":"GMExtensionFile","resourceVersion":"1.0","name":"","constants":[],"copyToTargets":9223372036854775807,"filename":"native_cursor.dll","final":"","functions":[
+    {"resourceType":"GMExtensionFile","resourceVersion":"1.0","name":"","constants":[
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"native_cursor_set_callback_mode_lowp","hidden":false,"value":"0",},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"native_cursor_set_callback_mode_highp","hidden":false,"value":"1",},
+      ],"copyToTargets":9223372036854775807,"filename":"native_cursor.dll","final":"","functions":[
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_create_from_buffer_raw","argCount":2,"args":[
             1,
-            1,
+            2,
           ],"documentation":"","externalName":"native_cursor_create_from_buffer_raw","help":"","hidden":true,"kind":11,"returnType":2,},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_add_from_buffer_raw","argCount":2,"args":[
             1,
-            1,
+            2,
           ],"documentation":"","externalName":"native_cursor_add_from_buffer_raw","help":"","hidden":true,"kind":11,"returnType":2,},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_create_empty_raw","argCount":2,"args":[
             1,
-            1,
+            2,
           ],"documentation":"","externalName":"native_cursor_create_empty_raw","help":"","hidden":true,"kind":11,"returnType":2,},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_create_from_full_path_raw","argCount":3,"args":[
             1,
-            1,
+            2,
             1,
           ],"documentation":"","externalName":"native_cursor_create_from_full_path_raw","help":"","hidden":true,"kind":11,"returnType":2,},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_add_from_full_path_raw","argCount":3,"args":[
             1,
-            1,
+            2,
             1,
           ],"documentation":"","externalName":"native_cursor_add_from_full_path_raw","help":"","hidden":true,"kind":11,"returnType":2,},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_set_raw","argCount":2,"args":[
             1,
-            1,
+            2,
           ],"documentation":"","externalName":"native_cursor_set_raw","help":"","hidden":true,"kind":11,"returnType":2,},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_reset_raw","argCount":2,"args":[
             1,
-            1,
+            2,
           ],"documentation":"","externalName":"native_cursor_reset_raw","help":"","hidden":true,"kind":11,"returnType":2,},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_get_frame_raw","argCount":2,"args":[
             1,
-            1,
+            2,
           ],"documentation":"","externalName":"native_cursor_get_frame_raw","help":"","hidden":true,"kind":11,"returnType":2,},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_set_frame_raw","argCount":2,"args":[
             1,
-            1,
+            2,
           ],"documentation":"","externalName":"native_cursor_set_frame_raw","help":"","hidden":true,"kind":11,"returnType":2,},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_get_framerate_raw","argCount":2,"args":[
             1,
-            1,
+            2,
           ],"documentation":"","externalName":"native_cursor_get_framerate_raw","help":"","hidden":true,"kind":11,"returnType":2,},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_set_framerate_raw","argCount":2,"args":[
             1,
-            1,
+            2,
           ],"documentation":"","externalName":"native_cursor_set_framerate_raw","help":"","hidden":true,"kind":11,"returnType":2,},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_destroy_raw","argCount":2,"args":[
             1,
-            1,
+            2,
           ],"documentation":"","externalName":"native_cursor_destroy_raw","help":"","hidden":true,"kind":11,"returnType":2,},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_update","argCount":0,"args":[],"documentation":"","externalName":"native_cursor_update","help":"native_cursor_update()","hidden":false,"kind":1,"returnType":2,},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_check_full_path","argCount":1,"args":[
@@ -77,6 +80,23 @@
             1,
             2,
           ],"documentation":"","externalName":"native_cursor_preinit_raw","help":"","hidden":true,"kind":11,"returnType":2,},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_preinit_raw_cb1","argCount":4,"args":[
+            1,
+            1,
+            1,
+            1,
+          ],"documentation":"","externalName":"native_cursor_preinit_raw_cb1","help":"","hidden":true,"kind":11,"returnType":2,},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_preinit_raw_cb2","argCount":1,"args":[
+            1,
+          ],"documentation":"","externalName":"native_cursor_preinit_raw_cb2","help":"","hidden":true,"kind":11,"returnType":2,},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_preinit_raw_cb3","argCount":-1,"args":[],"documentation":"","externalName":"native_cursor_preinit_raw_cb3","help":"","hidden":true,"kind":11,"returnType":2,},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_set_callback_raw","argCount":1,"args":[
+            2,
+          ],"documentation":"","externalName":"native_cursor_set_callback_raw","help":"","hidden":true,"kind":11,"returnType":2,},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_set_callback_mode","argCount":1,"args":[
+            2,
+          ],"documentation":"","externalName":"native_cursor_set_callback_mode","help":"native_cursor_set_callback_mode(mode)","hidden":false,"kind":1,"returnType":2,},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_get_callback_mode","argCount":0,"args":[],"documentation":"","externalName":"native_cursor_get_callback_mode","help":"native_cursor_get_callback_mode()","hidden":false,"kind":1,"returnType":2,},
       ],"init":"","kind":1,"order":[
         {"name":"native_cursor_create_from_buffer_raw","path":"extensions/native_cursor/native_cursor.yy",},
         {"name":"native_cursor_add_from_buffer_raw","path":"extensions/native_cursor/native_cursor.yy",},
@@ -95,12 +115,14 @@
         {"name":"native_cursor_preinit_raw","path":"extensions/native_cursor/native_cursor.yy",},
       ],"origname":"extensions\\native_cursor.dll","ProxyFiles":[
         {"resourceType":"GMProxyFile","resourceVersion":"1.0","name":"native_cursor_x64.dll","TargetMask":6,},
-      ],"uncompress":false,"usesRunnerInterface":false,},
+      ],"tags":[],"uncompress":false,},
     {"resourceType":"GMExtensionFile","resourceVersion":"1.0","name":"","constants":[],"copyToTargets":9223372036854775807,"filename":"native_cursor.gml","final":"","functions":[
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_prepare_buffer","argCount":1,"args":[
             2,
           ],"documentation":"","externalName":"native_cursor_prepare_buffer","help":"","hidden":true,"kind":11,"returnType":2,},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_preinit","argCount":0,"args":[],"documentation":"","externalName":"native_cursor_preinit","help":"","hidden":true,"kind":11,"returnType":2,},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_set_callback","argCount":-1,"args":[],"documentation":"","externalName":"native_cursor_set_callback","help":"native_cursor_set_callback(?script)->","hidden":false,"kind":2,"returnType":2,},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_get_callback","argCount":0,"args":[],"documentation":"","externalName":"native_cursor_get_callback","help":"native_cursor_get_callback()->","hidden":false,"kind":2,"returnType":2,},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_create_from_file","argCount":1,"args":[
             2,
           ],"documentation":"","externalName":"native_cursor_create_from_file","help":"native_cursor_create_from_file(path)->","hidden":false,"kind":2,"returnType":2,},
@@ -140,7 +162,7 @@
         {"name":"native_cursor_create_from_surface","path":"extensions/native_cursor/native_cursor.yy",},
         {"name":"native_cursor_add_from_surface","path":"extensions/native_cursor/native_cursor.yy",},
         {"name":"native_cursor_resolve_full_path","path":"extensions/native_cursor/native_cursor.yy",},
-      ],"origname":"extensions\\gml.gml","ProxyFiles":[],"uncompress":false,"usesRunnerInterface":false,},
+      ],"origname":"extensions\\gml.gml","ProxyFiles":[],"tags":[],"uncompress":false,},
     {"resourceType":"GMExtensionFile","resourceVersion":"1.0","name":"","constants":[],"copyToTargets":-1,"filename":"autogen.gml","final":"","functions":[
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_create_from_buffer","argCount":-1,"args":[],"documentation":"","externalName":"native_cursor_create_from_buffer","help":"native_cursor_create_from_buffer(buf:buffer, width:int, height:int, hotspot_x:int, hotspot_y:int, fps:number = 30)->","hidden":false,"kind":2,"returnType":2,},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_add_from_buffer","argCount":6,"args":[
@@ -193,7 +215,7 @@
         {"name":"native_cursor_get_framerate","path":"extensions/native_cursor/native_cursor.yy",},
         {"name":"native_cursor_set_framerate","path":"extensions/native_cursor/native_cursor.yy",},
         {"name":"native_cursor_destroy","path":"extensions/native_cursor/native_cursor.yy",},
-      ],"origname":"extensions\\autogen.gml","ProxyFiles":[],"uncompress":false,"usesRunnerInterface":false,},
+      ],"origname":"extensions\\autogen.gml","ProxyFiles":[],"tags":[],"uncompress":false,},
   ],
   "gradleinject": "",
   "hasConvertedCodeInjection": true,

@@ -6,3 +6,6 @@ native_cursor-for-GMS2/*
 native_cursor-for-GMS2.3+/*
 !native_cursor-for-GMS2.3+/native_cursor_23.yyp
 !native_cursor-for-GMS2.3+/metadata.json
+
+*.yyz
+*.yymps

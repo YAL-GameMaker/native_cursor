@@ -44,7 +44,7 @@
         {"name":"window_set_cursor_sprite","path":"extensions/native_cursor_v1_compat/native_cursor_v1_compat.yy",},
         {"name":"window_set_cursor_sprite_ext","path":"extensions/native_cursor_v1_compat/native_cursor_v1_compat.yy",},
         {"name":"window_set_cursor_surface","path":"extensions/native_cursor_v1_compat/native_cursor_v1_compat.yy",},
-      ],"origname":"","ProxyFiles":[],"uncompress":false,"usesRunnerInterface":false,},
+      ],"origname":"","ProxyFiles":[],"tags":[],"uncompress":false,},
   ],
   "gradleinject": "",
   "hasConvertedCodeInjection": true,

@@ -56,7 +56,7 @@
           <argCount>2</argCount>
           <args>
             <arg>1</arg>
-            <arg>1</arg>
+            <arg>2</arg>
           </args>
         </function>
         <function>
@@ -68,7 +68,7 @@
           <argCount>2</argCount>
           <args>
             <arg>1</arg>
-            <arg>1</arg>
+            <arg>2</arg>
           </args>
         </function>
         <function>
@@ -80,7 +80,7 @@
           <argCount>2</argCount>
           <args>
             <arg>1</arg>
-            <arg>1</arg>
+            <arg>2</arg>
           </args>
         </function>
         <function>
@@ -92,7 +92,7 @@
           <argCount>3</argCount>
           <args>
             <arg>1</arg>
-            <arg>1</arg>
+            <arg>2</arg>
             <arg>1</arg>
           </args>
         </function>
@@ -105,7 +105,7 @@
           <argCount>3</argCount>
           <args>
             <arg>1</arg>
-            <arg>1</arg>
+            <arg>2</arg>
             <arg>1</arg>
           </args>
         </function>
@@ -118,7 +118,7 @@
           <argCount>2</argCount>
           <args>
             <arg>1</arg>
-            <arg>1</arg>
+            <arg>2</arg>
           </args>
         </function>
         <function>
@@ -130,7 +130,7 @@
           <argCount>2</argCount>
           <args>
             <arg>1</arg>
-            <arg>1</arg>
+            <arg>2</arg>
           </args>
         </function>
         <function>
@@ -142,7 +142,7 @@
           <argCount>2</argCount>
           <args>
             <arg>1</arg>
-            <arg>1</arg>
+            <arg>2</arg>
           </args>
         </function>
         <function>
@@ -154,7 +154,7 @@
           <argCount>2</argCount>
           <args>
             <arg>1</arg>
-            <arg>1</arg>
+            <arg>2</arg>
           </args>
         </function>
         <function>
@@ -166,7 +166,7 @@
           <argCount>2</argCount>
           <args>
             <arg>1</arg>
-            <arg>1</arg>
+            <arg>2</arg>
           </args>
         </function>
         <function>
@@ -178,7 +178,7 @@
           <argCount>2</argCount>
           <args>
             <arg>1</arg>
-            <arg>1</arg>
+            <arg>2</arg>
           </args>
         </function>
         <function>
@@ -190,7 +190,7 @@
           <argCount>2</argCount>
           <args>
             <arg>1</arg>
-            <arg>1</arg>
+            <arg>2</arg>
           </args>
         </function>
         <function>
@@ -225,8 +225,84 @@
             <arg>2</arg>
           </args>
         </function>
+        <function>
+          <name>native_cursor_preinit_raw_cb1</name>
+          <externalName>native_cursor_preinit_raw_cb1</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>4</argCount>
+          <args>
+            <arg>1</arg>
+            <arg>1</arg>
+            <arg>1</arg>
+            <arg>1</arg>
+          </args>
+        </function>
+        <function>
+          <name>native_cursor_preinit_raw_cb2</name>
+          <externalName>native_cursor_preinit_raw_cb2</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>1</arg>
+          </args>
+        </function>
+        <function>
+          <name>native_cursor_preinit_raw_cb3</name>
+          <externalName>native_cursor_preinit_raw_cb3</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>-1</argCount>
+          <args/>
+        </function>
+        <function>
+          <name>native_cursor_set_callback_raw</name>
+          <externalName>native_cursor_set_callback_raw</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>native_cursor_set_callback_mode</name>
+          <externalName>native_cursor_set_callback_mode</externalName>
+          <kind>1</kind>
+          <help>native_cursor_set_callback_mode(mode)</help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>native_cursor_get_callback_mode</name>
+          <externalName>native_cursor_get_callback_mode</externalName>
+          <kind>1</kind>
+          <help>native_cursor_get_callback_mode()</help>
+          <returnType>2</returnType>
+          <argCount>0</argCount>
+          <args/>
+        </function>
       </functions>
-      <constants/>
+      <constants>
+        <constant>
+          <name>native_cursor_set_callback_mode_lowp</name>
+          <value>0</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>native_cursor_set_callback_mode_highp</name>
+          <value>1</value>
+          <hidden>0</hidden>
+        </constant>
+      </constants>
     </file>
     <file>
       <filename>native_cursor.gml</filename>
@@ -258,6 +334,24 @@
           <externalName>native_cursor_preinit</externalName>
           <kind>11</kind>
           <help></help>
+          <returnType>2</returnType>
+          <argCount>0</argCount>
+          <args/>
+        </function>
+        <function>
+          <name>native_cursor_set_callback</name>
+          <externalName>native_cursor_set_callback</externalName>
+          <kind>2</kind>
+          <help>native_cursor_set_callback(?script)-&gt;</help>
+          <returnType>2</returnType>
+          <argCount>-1</argCount>
+          <args/>
+        </function>
+        <function>
+          <name>native_cursor_get_callback</name>
+          <externalName>native_cursor_get_callback</externalName>
+          <kind>2</kind>
+          <help>native_cursor_get_callback()-&gt;</help>
           <returnType>2</returnType>
           <argCount>0</argCount>
           <args/>

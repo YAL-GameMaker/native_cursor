@@ -37,6 +37,58 @@ var _swap_br = !ds_map_exists(_info, "video_adapter_0_name");
 ds_map_destroy(_info);
 native_cursor_preinit_raw(window_handle(), _swap_br);
 
+// GMS >= 2.3:
+var _m = function() { return 1 };
+var _f1 = method(undefined, is_bool);
+var _f2 = method(undefined, is_bool);
+var _f3 = method(undefined, _m);
+var _f4 = method(undefined, _m);
+global.g_native_cursor_self = { __name: "native_cursor dummy" };
+global.g_native_cursor_callback = undefined;
+var _cf = function(_mouse_move_x, _mouse_move_y) {
+    if (global.g_native_cursor_callback == undefined) return false;
+    try {
+        with (global.g_native_cursor_self) {
+            with (global.g_native_cursor_self) {
+                global.g_native_cursor_callback(_mouse_move_x, _mouse_move_y);
+            }
+        }
+    } catch (_ex) {
+        show_debug_message("[native_cursor] Error in callback!");
+        if (is_struct(_ex) && struct_exists(_ex, "longMessage")) {
+            show_debug_message("############################################################################################");
+            show_debug_message(_ex.longMessage);
+            var _stack = struct_get(_ex, "stacktrace");
+            show_debug_message("############################################################################################");
+            if (is_array(_stack)) {
+                for (var i = 0, n = array_length(_stack); i < n; i++) {
+                    show_debug_message(_stack[i]);
+                }
+            } else show_debug_message("(no stacktrace?)");
+        } else show_debug_message(_ex);
+    }
+}
+native_cursor_preinit_raw_cb1(ptr(_f1), ptr(_f2), ptr(_f3), ptr(_f4));
+native_cursor_preinit_raw_cb2(ptr(method(undefined, script_execute)));
+with (global.g_native_cursor_self)  {
+    native_cursor_preinit_raw_cb3(method_get_index(_cf));
+}
+//*/
+
+#define native_cursor_set_callback
+/// (?script)->
+var _script = argument_count > 0 ? argument[0] : undefined;
+// GMS >= 2.3:
+global.g_native_cursor_callback = _script;
+native_cursor_set_callback_raw(_script != undefined);
+return true;
+//*/
+return false;
+
+#define native_cursor_get_callback
+/// ()->
+return global.g_native_cursor_callback;
+
 #define native_cursor_create_from_file
 /// (path)->
 return native_cursor_create_from_full_path(native_cursor_resolve_full_path(argument0));

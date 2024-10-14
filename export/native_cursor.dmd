@@ -1,25 +1,48 @@
 ```set template default.html```
 ```set title native_cursor cheat sheet```
 ```set autoapi ext```
+```gmlapi fnames2```
 ```set intro
 This is a "cheat sheet" for "native_cursor" extension by YellowAfterlife.
 The extension can be found on [itch.io](https://yellowafterlife.itch.io/gamemaker-native-cursors)
 or [GM Marketplace](https://marketplace.yoyogames.com/assets/8796/native-cursors).
 ```
-#[Management]() {
-	#[Concepts]() {
-		A cursor can be: --{
-		-	Windows: Up to 256x256.\
-			On select old configurations, cursors above 64x64 do not show up.
-		-	HTML5: Up to 128x128.\
-			MDN warns that this is entirely up to the browser and "unfitting" cursors will be ignored.
-		}
-		
-		Hotspot (hpx/hpy) is an equivalent of an origin for the cursor.
-		
-		`FPS` is animation speed in frames per second.
-	}
+#[Concepts]() {
+	Cursors are typically 256x256 pixels or smaller,
+	though the current Windows versions do not seem to limit the cursor size.
+	
+	On select older systems, cursors above 64x64 pixels did not display at all.
+	
+	It's a good idea to keep your cursors square - otherwise screen-capturing software
+	[might not display them correctly](https://itch.io/t/3976471/cursors-appear-too-wide-in-screen-recordings).
 	---
+	Hotspot (`hpx`/`hpy`) is an equivalent of an origin for the cursor.
+	---
+	`FPS` is animation speed in frames per second.
+}
+#[Basics]() {
+	##{
+	-	Call [native_cursor_update] in a Step event somewhere:
+		```gml
+		native_cursor_update();
+		```
+	-	Create cursor(s).\
+		The easiest is to create a cursor from a sprite:
+		```gml
+		cool_cursor = native_cursor_create_from_sprite(spr_cool_cursor);
+		```
+	-	Apply cursor(s).\
+		You can swap these as necessary.
+		```gml
+		native_cursor_set(cool_cursor);
+		```
+	-	If you are creating cursors dynamically,
+		don't forget to [destroy](native_cursor_destroy) them later!
+		
+		You don't have to destroy cursors when the game ends - Windows handles that.
+	}
+}
+#[Management]() {
 	#[native_cursor_create_empty()->]() {
 		Creates and returns a new empty cursor.
 	}
@@ -104,5 +127,76 @@ or [GM Marketplace](https://marketplace.yoyogames.com/assets/8796/native-cursors
 	}
 	#[native_cursor_set_framerate(cursor, fps:int)]() {
 		Changes animation speed for a cursor.
+	}
+}
+#[Callback]() {
+	These enable you to respond to cursor position changes in a more timely manner
+	than what would be possible by putting code in GameMaker events.
+	
+	#[native_cursor_set_callback(?function)->]() {
+		Changes the function/script that fires on mouse movement.
+		
+		Resets the callback if `function` argument is omitted or is `undefined`.
+		
+		The function receives x, y arguments (window mouse coordinates) that come from
+		[WM_SETCURSOR](https://learn.microsoft.com/en-us/windows/win32/menurc/wm-setcursor)
+		and can take an opportunity to change the cursor.
+		
+		Windows may serve mouse events an arbitrary number of times per second -
+		for example, if the player uses a gaming mouse with a 8000 Hz polling rate,
+		your function might be called up to 133 times per frame (at 60fps).
+		
+		For this reason it's best to keep your callback logic minimal or even allow
+		the user to opt out by
+		[switching to a lower-frequency callback mode](native_cursor_set_callback_mode).
+		
+		For example, the following
+		creates a handful of "directional crosshair" cursors from a `spr_cursor_dir` sprite
+		and then selects the appropriate one based on direction
+		between window center and mouse position:
+		```gml
+		dir_count = 360;
+		dir_cursors = [];
+		var _surf = surface_create(64, 64);
+		var _texf = gpu_get_texfilter();
+		gpu_set_tex_filter(true);
+		for (var i = 0; i < dir_count; i++) {
+			surface_set_target(_surf);
+			draw_clear_alpha(c_white, 0);
+			draw_sprite_ext(spr_cursor_dir, 0, 32, 32, 1, 1, i * 360 / dir_count, c_white, 1);
+			surface_reset_target();
+			dir_cursors[i] = native_cursor_create_from_surface(_surf, 32, 32);
+		}
+		surface_free(_surf);
+		gpu_set_tex_filter(_texf);
+		native_cursor_set_callback(function(_x, _y) {
+			var dir = point_direction(
+				window_get_width() div 2,
+				window_get_height() div 2,
+				_x, _y
+			);
+			var ind = round(dir / 360 * dir_count) % dir_count;
+			if (ind < 0) ind += dir_count;
+			native_cursor_set(dir_cursors[ind]);
+		});
+		```
+	}
+	#[native_cursor_get_callback()->]() {
+		Returns the current callback.
+	}
+	---
+	#[native_cursor_set_callback_mode(mode)]() {
+		Changes the callback handling mode.
+		
+		The supported values are: --{
+		- `native_cursor_set_callback_mode_highp`:\
+			The callback is executed once per `WM_MOUSEMOVE` event.
+		- `native_cursor_set_callback_mode_lowp`:\
+			The callback is executed once per frame when you run [native_cursor_update]
+			(provided that the mouse )
+		}
+	}
+	#[native_cursor_get_callback_mode()->]() {
+		Returns the current callback handling mode.
 	}
 }

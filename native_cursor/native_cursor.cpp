@@ -1,3 +1,4 @@
+// native_cursor.cpp
 /// @author YellowAfterlife
 
 #include "stdafx.h"
@@ -98,6 +99,7 @@ struct {
 	native_cursor* cursor;
 	HCURSOR hcursor;
 	int x, y;
+	bool moved;
 	bool inbound;
 	LPARAM lastLPARAM;
 	WPARAM lastWPARAM;
@@ -105,6 +107,7 @@ struct {
 		cursor = nullptr;
 		hcursor = NULL;
 		x = 0; y = 0;
+		moved = false;
 		inbound = false;
 		lastLPARAM = 0;
 		lastWPARAM = 0;
@@ -126,7 +129,9 @@ void SwapRedBlue(BYTE* buf, size_t count) {
 	for (; i < count; i += 4) std::swap(buf[i], buf[i + 2]);
 }
 
+static uint8_t native_cursor_apply_impl_state = 0;
 bool native_cursor_apply_impl(bool force) {
+	if (native_cursor_apply_impl_state > 0) force = true;
 	auto cur = current.cursor;
 	if (cur == nullptr || cur->count <= 0) return false;
 	if (!current.inbound) return false;
@@ -134,17 +139,21 @@ bool native_cursor_apply_impl(bool force) {
 	if (!force && hc == current.hcursor) return true;
 	current.hcursor = hc;
 	SetCursor(hc);
+	native_cursor_apply_impl_state = 2;
 	return true;
 }
 
 HWND game_window;
 WNDPROC wndproc_base;
+extern bool native_cursor_callback_enable, native_cursor_callback_highp;
+bool native_cursor_callback(int x, int y);
 LRESULT CALLBACK wndproc_hook(HWND hwnd, UINT msg, WPARAM wp, LPARAM lp) {
 	static int mx = 0, my = 0;
 	switch (msg) {
 		case WM_MOUSEMOVE:
 			current.x = (short)LOWORD(lp);
 			current.y = (short)HIWORD(lp);
+			current.moved = true;
 			break;
 		case WM_SETCURSOR:
 			//trace("x=%d y=%d f=%d", current.x, current.y, (lp & 0xffff));
@@ -167,6 +176,16 @@ LRESULT CALLBACK wndproc_hook(HWND hwnd, UINT msg, WPARAM wp, LPARAM lp) {
 				current.inbound = false;
 			} while (false);
 			if (!current.inbound) break;
+
+			//
+			if (native_cursor_callback_enable && native_cursor_callback_highp) {
+				native_cursor_apply_impl_state = 1;
+				native_cursor_callback(current.x, current.y);
+				auto called = native_cursor_apply_impl_state == 2;
+				native_cursor_apply_impl_state = 0;
+				if (called) return TRUE;
+			}
+			//
 			if (!native_cursor_apply_impl(true)) break;
 			return TRUE;
 	}
@@ -174,8 +193,22 @@ LRESULT CALLBACK wndproc_hook(HWND hwnd, UINT msg, WPARAM wp, LPARAM lp) {
 }
 ///
 dllx void native_cursor_update() {
-	auto cur = current.cursor;
-	if (cur && cur->count > 1) native_cursor_apply_impl(false);
+	auto apply = true;
+	//
+	if (native_cursor_callback_enable && !native_cursor_callback_highp && current.moved) {
+		
+		native_cursor_apply_impl_state = 1;
+		native_cursor_callback(current.x, current.y);
+		if (native_cursor_apply_impl_state == 2) apply = false;
+		native_cursor_apply_impl_state = 0;
+	}
+	//
+	if (apply) {
+		auto cur = current.cursor;
+		if (cur && cur->count > 1) native_cursor_apply_impl(false);
+	}
+	//
+	current.moved = false;
 }
 
 uint8_t* CreateBgraFromGmPixels(uint8_t* source, size_t size) {
@@ -339,6 +372,9 @@ bool native_cursor_preinit_statics() {
 	SwapRedBlue_needed = false;
 	wndproc_base = nullptr;
 	current.init();
+	//
+	void native_cursor_preinit_statics_cb();
+	native_cursor_preinit_statics_cb();
 	return true;
 }
 

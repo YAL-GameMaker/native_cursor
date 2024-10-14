@@ -26,7 +26,13 @@ cmd /C copyre ..\native_cursor_23\extensions\native_cursor native_cursor-for-GMS
 cmd /C copyre ..\native_cursor_23\datafiles\native_cursor.html native_cursor-for-GMS2.3+\datafiles\native_cursor.html
 cd native_cursor-for-GMS2.3+
 cmd /C 7z a native_cursor-for-GMS2.3+.zip *
-move /Y native_cursor-for-GMS2.3+.zip ../native_cursor-for-GMS2.3+.yymps
+move /Y native_cursor-for-GMS2.3+.zip ../native_cursor-for-GM2022+.yymps
 cd ..
+
+del /Q native_cursor_demo-for-GM2022+.yyz
+cd ..\native_cursor_23
+cmd /C 7z a ..\export\native_cursor_demo.zip *
+cd ..\export
+move /Y native_cursor_demo.zip native_cursor_demo-for-GM2022+.yyz
 
 pause

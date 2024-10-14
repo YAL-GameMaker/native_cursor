@@ -1,3 +1,4 @@
+// gml_ext.h
 #pragma once
 //#include "stdafx.h"
 #include <vector>
@@ -19,6 +20,7 @@ using namespace std;
 #define dllx extern "C"
 #endif*/
 #define dllx extern "C" __declspec(dllexport)
+#define dllm __declspec(dllexport)
 
 #ifdef _WINDEF_
 typedef HWND GAME_HWND;

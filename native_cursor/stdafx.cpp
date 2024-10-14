@@ -28,7 +28,7 @@ void trace(const char* pszFormat, ...) {
 	auto len = strlen(buf);
 	buf[len] = '\n';
 	buf[++len] = 0;
-	WriteFile(GetStdHandle(STD_OUTPUT_HANDLE), buf, len, &done, NULL);
+	WriteFile(GetStdHandle(STD_OUTPUT_HANDLE), buf, (DWORD)len, &done, NULL);
 }
 #endif
 #endif

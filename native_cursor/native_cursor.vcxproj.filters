@@ -44,6 +44,9 @@
     <ClCompile Include="autogen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="native_cursor_callback.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="native_cursor.rc">
