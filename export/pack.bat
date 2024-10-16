@@ -21,9 +21,11 @@ move /Y native_cursor-for-GMS2.zip ../native_cursor-for-GMS2.yymp
 cd ..
 
 if not exist "native_cursor-for-GMS2.3+\extensions" mkdir "native_cursor-for-GMS2.3+\extensions"
-if not exist "native_cursor-for-GMS2.3+\datafiles" mkdir "native_cursor-for-GMS2.3+\datafiles"
 cmd /C copyre ..\native_cursor_23\extensions\native_cursor native_cursor-for-GMS2.3+\extensions\native_cursor
-cmd /C copyre ..\native_cursor_23\datafiles\native_cursor.html native_cursor-for-GMS2.3+\datafiles\native_cursor.html
+
+if not exist "native_cursor-for-GMS2.3+\scripts" mkdir "native_cursor-for-GMS2.3+\scripts"
+cmd /C copyre ..\native_cursor_23\scripts\native_cursor_extras native_cursor-for-GMS2.3+\scripts\native_cursor_extras
+
 cd native_cursor-for-GMS2.3+
 cmd /C 7z a native_cursor-for-GMS2.3+.zip *
 move /Y native_cursor-for-GMS2.3+.zip ../native_cursor-for-GM2022+.yymps
