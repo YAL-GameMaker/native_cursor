@@ -226,7 +226,6 @@
   <ItemGroup>
     <ClCompile Include="autogen.cpp" />
     <ClCompile Include="native_cursor.cpp" />
-    <ClCompile Include="native_cursor_callback.cpp" />
     <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -31,10 +31,12 @@ body {
 	background: #ffffff;
 	margin: 0 auto;
 	padding: 8px;
-	box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
 	min-height: 100%;
 	min-height: 100vh;
 	box-sizing: border-box;
+}
+.page, .navmenu {
+	box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
 }
 .page > p:first-child {
 	margin-top: 0;
@@ -62,7 +64,6 @@ body {
 	padding-left: 4px;
 	padding-top: 1px;
 	padding-bottom: 1px;
-	cursor: pointer;
 	display: flex;
 	align-items: center;
 }
@@ -91,6 +92,9 @@ body {
 }
 #doc section.empty > header::before {
 	content: " "; /*"·"*/
+}
+#doc section.link > header::before {
+	content: "→";
 }
 
 #doc header:hover,
@@ -419,7 +423,7 @@ Click on sections to expand/collapse them.<br>Quick display controls:
 
 <style>
 .main { background-color: #899FC6 }
-.page { box-shadow: 0 0 8px rgba(0, 0, 0, 0.3) }
+.page, .navmenu { box-shadow: 0 0 8px rgba(0, 0, 0, 0.3) }
 #night:checked + .main { background-color: #405070 }
 #night:checked + .main .page { background-color: #1A202D }
 </style>
@@ -519,68 +523,6 @@ Click on sections to expand/collapse them.<br>Quick display controls:
 		Returns current animation speed for a cursor.
 	</p></article></section><section><header id="native_cursor_set_framerate"><a href="#native_cursor_set_framerate" title="(permalink)">native_cursor_set_framerate(cursor, fps:int)</a></header><article><p>
 		Changes animation speed for a cursor.
-	</p></article></section></article></section><section><header id="Callback"><a href="#Callback" title="(permalink)">Callback</a></header><article><a class="sticky-side" href="#Callback" title="Callback"><span>Callback</span></a><p>
-	These enable you to respond to cursor position changes in a more timely manner
-	than what would be possible by putting code in GameMaker events.
-	</p><section><header id="native_cursor_set_callback"><a href="#native_cursor_set_callback" title="(permalink)">native_cursor_set_callback(?function)&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
-		Changes the function/script that fires on mouse movement.
-		</p><p>
-		Resets the callback if <code>function</code> argument is omitted or is <code>undefined</code>.
-		</p><p>
-		The function receives x, y arguments (window mouse coordinates) that come from
-		<a href="https://learn.microsoft.com/en-us/windows/win32/menurc/wm-setcursor">WM_SETCURSOR</a>
-		and can take an opportunity to change the cursor.
-		</p><p>
-		Windows may serve mouse events an arbitrary number of times per second -
-		for example, if the player uses a gaming mouse with a 8000 Hz polling rate,
-		your function might be called up to 133 times per frame (at 60fps).
-		</p><p>
-		For this reason it's best to keep your callback logic minimal or even allow
-		the user to opt out by
-		<a href="#native_cursor_set_callback_mode">switching to a lower-frequency callback mode</a>.
-		</p><p>
-		For example, the following
-		creates a handful of "directional crosshair" cursors from a <code>spr_cursor_dir</code> sprite
-		and then selects the appropriate one based on direction
-		between window center and mouse position:
-		</p><pre class="gmlmd">
-<span class="uv">dir_count</span> <span class="op">=</span> <span class="nu">360</span><span class="op">;</span>
-<span class="uv">dir_cursors</span> <span class="op">=</span> <span class="op">[</span><span class="op">]</span><span class="op">;</span>
-<span class="kw">var</span> <span class="lv">_surf</span> <span class="op">=</span> <span class="sf">surface_create</span><span class="op">(</span><span class="nu">64</span><span class="op">,</span> <span class="nu">64</span><span class="op">)</span><span class="op">;</span>
-<span class="kw">var</span> <span class="lv">_texf</span> <span class="op">=</span> <span class="sf">gpu_get_texfilter</span><span class="op">(</span><span class="op">)</span><span class="op">;</span>
-<span class="sf">gpu_set_tex_filter</span><span class="op">(</span><span class="sv">true</span><span class="op">)</span><span class="op">;</span>
-<span class="kw">for</span> <span class="op">(</span><span class="kw">var</span> <span class="lv">i</span> <span class="op">=</span> <span class="nu">0</span><span class="op">;</span> <span class="lv">i</span> <span class="op">&lt;</span> <span class="uv">dir_count</span><span class="op">;</span> <span class="lv">i</span><span class="op">++</span><span class="op">)</span> <span class="cb">{</span>
-    <span class="sf">surface_set_target</span><span class="op">(</span><span class="lv">_surf</span><span class="op">)</span><span class="op">;</span>
-    <span class="sf">draw_clear_alpha</span><span class="op">(</span><span class="sv">c_white</span><span class="op">,</span> <span class="nu">0</span><span class="op">)</span><span class="op">;</span>
-    <span class="sf">draw_sprite_ext</span><span class="op">(</span><span class="ri">spr_cursor_dir</span><span class="op">,</span> <span class="nu">0</span><span class="op">,</span> <span class="nu">32</span><span class="op">,</span> <span class="nu">32</span><span class="op">,</span> <span class="nu">1</span><span class="op">,</span> <span class="nu">1</span><span class="op">,</span> <span class="lv">i</span> <span class="op">*</span> <span class="nu">360</span> <span class="op">/</span> <span class="uv">dir_count</span><span class="op">,</span> <span class="sv">c_white</span><span class="op">,</span> <span class="nu">1</span><span class="op">)</span><span class="op">;</span>
-    <span class="sf">surface_reset_target</span><span class="op">(</span><span class="op">)</span><span class="op">;</span>
-    <span class="uv">dir_cursors</span><span class="op">[</span><span class="lv">i</span><span class="op">]</span> <span class="op">=</span> <a class="sf" href="#native_cursor_create_from_surface">native_cursor_create_from_surface</a><span class="op">(</span><span class="lv">_surf</span><span class="op">,</span> <span class="nu">32</span><span class="op">,</span> <span class="nu">32</span><span class="op">)</span><span class="op">;</span>
-<span class="cb">}</span>
-<span class="sf">surface_free</span><span class="op">(</span><span class="lv">_surf</span><span class="op">)</span><span class="op">;</span>
-<span class="sf">gpu_set_tex_filter</span><span class="op">(</span><span class="lv">_texf</span><span class="op">)</span><span class="op">;</span>
-<a class="sf" href="#native_cursor_set_callback">native_cursor_set_callback</a><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="lv">_x</span><span class="op">,</span> <span class="lv">_y</span><span class="op">)</span> <span class="cb">{</span>
-    <span class="kw">var</span> <span class="lv">dir</span> <span class="op">=</span> <span class="sf">point_direction</span><span class="op">(</span>
-        <span class="sf">window_get_width</span><span class="op">(</span><span class="op">)</span> <span class="kw">div</span> <span class="nu">2</span><span class="op">,</span>
-        <span class="sf">window_get_height</span><span class="op">(</span><span class="op">)</span> <span class="kw">div</span> <span class="nu">2</span><span class="op">,</span>
-        <span class="lv">_x</span><span class="op">,</span> <span class="lv">_y</span>
-    <span class="op">)</span><span class="op">;</span>
-    <span class="kw">var</span> <span class="lv">ind</span> <span class="op">=</span> <span class="sf">round</span><span class="op">(</span><span class="lv">dir</span> <span class="op">/</span> <span class="nu">360</span> <span class="op">*</span> <span class="uv">dir_count</span><span class="op">)</span> <span class="op">%</span> <span class="uv">dir_count</span><span class="op">;</span>
-    <span class="kw">if</span> <span class="op">(</span><span class="lv">ind</span> <span class="op">&lt;</span> <span class="nu">0</span><span class="op">)</span> <span class="lv">ind</span> <span class="op">+=</span> <span class="uv">dir_count</span><span class="op">;</span>
-    <a class="sf" href="#native_cursor_set">native_cursor_set</a><span class="op">(</span><span class="uv">dir_cursors</span><span class="op">[</span><span class="lv">ind</span><span class="op">]</span><span class="op">)</span><span class="op">;</span>
-<span class="cb">}</span><span class="op">)</span><span class="op">;</span>
-</pre></article></section><section><header id="native_cursor_get_callback"><a href="#native_cursor_get_callback" title="(permalink)">native_cursor_get_callback()&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
-		Returns the current callback.
-	</p></article></section><hr/><section><header id="native_cursor_set_callback_mode"><a href="#native_cursor_set_callback_mode" title="(permalink)">native_cursor_set_callback_mode(mode)</a></header><article><p>
-		Changes the callback handling mode.
-		</p><p>
-		The supported values are: </p><ul>
-		<li> <code>native_cursor_set_callback_mode_highp</code>:<br/>
-			The callback is executed once per <code>WM_MOUSEMOVE</code> event.
-		</li><li> <code>native_cursor_set_callback_mode_lowp</code>:<br/>
-			The callback is executed once per frame when you run <a href="#native_cursor_update">native_cursor_update</a>
-			(provided that the mouse )
-		</li></ul></article></section><section><header id="native_cursor_get_callback_mode"><a href="#native_cursor_get_callback_mode" title="(permalink)">native_cursor_get_callback_mode()&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
-		Returns the current callback handling mode.
 	</p></article></section></article></section></p><!--doc>-->
 </section>
 </main></div>
@@ -598,11 +540,12 @@ Click on sections to expand/collapse them.<br>Quick display controls:
 	//
 	function h3bind(h3) {
 		var node = h3.parentNode;
+		var isLink = node.classList.contains("link");
 		var snip = node.children[1];
 		var id = h3.id || h3.textContent;
 		h3.snip = snip;
 		h3.doc_set = function(z) {
-			if (z) node.classList.add("open"); else node.classList.remove("open");
+			if (isLink) {} else if (z) node.classList.add("open"); else node.classList.remove("open");
 			if (state) {
 				state[id] = z;
 				window.localStorage.setItem(path, JSON.stringify(state));

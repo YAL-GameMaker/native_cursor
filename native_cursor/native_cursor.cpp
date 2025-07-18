@@ -145,8 +145,6 @@ bool native_cursor_apply_impl(bool force) {
 
 HWND game_window;
 WNDPROC wndproc_base;
-extern bool native_cursor_callback_enable, native_cursor_callback_highp;
-bool native_cursor_callback(int x, int y);
 LRESULT CALLBACK wndproc_hook(HWND hwnd, UINT msg, WPARAM wp, LPARAM lp) {
 	static int mx = 0, my = 0;
 	switch (msg) {
@@ -176,15 +174,6 @@ LRESULT CALLBACK wndproc_hook(HWND hwnd, UINT msg, WPARAM wp, LPARAM lp) {
 				current.inbound = false;
 			} while (false);
 			if (!current.inbound) break;
-
-			//
-			if (native_cursor_callback_enable && native_cursor_callback_highp) {
-				native_cursor_apply_impl_state = 1;
-				native_cursor_callback(current.x, current.y);
-				auto called = native_cursor_apply_impl_state == 2;
-				native_cursor_apply_impl_state = 0;
-				if (called) return TRUE;
-			}
 			//
 			if (!native_cursor_apply_impl(true)) break;
 			return TRUE;
@@ -194,14 +183,6 @@ LRESULT CALLBACK wndproc_hook(HWND hwnd, UINT msg, WPARAM wp, LPARAM lp) {
 ///
 dllx void native_cursor_update() {
 	auto apply = true;
-	//
-	if (native_cursor_callback_enable && !native_cursor_callback_highp && current.moved) {
-		
-		native_cursor_apply_impl_state = 1;
-		native_cursor_callback(current.x, current.y);
-		if (native_cursor_apply_impl_state == 2) apply = false;
-		native_cursor_apply_impl_state = 0;
-	}
 	//
 	if (apply) {
 		auto cur = current.cursor;
@@ -372,9 +353,6 @@ bool native_cursor_preinit_statics() {
 	SwapRedBlue_needed = false;
 	wndproc_base = nullptr;
 	current.init();
-	//
-	void native_cursor_preinit_statics_cb();
-	native_cursor_preinit_statics_cb();
 	return true;
 }
 
