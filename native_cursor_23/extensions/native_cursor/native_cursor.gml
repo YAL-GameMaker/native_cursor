@@ -32,10 +32,14 @@ while (--i >= 0) {
     }
 }
 
-var _info = os_get_info();
-var _swap_br = !ds_map_exists(_info, "video_adapter_0_name");
-ds_map_destroy(_info);
-native_cursor_preinit_raw(window_handle(), _swap_br);
+var _swap_br = false;
+if (os_type == os_windows) {
+    var _info = os_get_info();
+    _swap_br = os_type == os_windows && !ds_map_exists(_info, "video_adapter_0_name");
+    ds_map_destroy(_info);
+}
+var _ret = native_cursor_preinit_raw(window_handle(), _swap_br);
+if (os_browser != browser_not_a_browser && _ret) native_cursor_preinit_gmcallback();
 
 #define native_cursor_create_from_file
 /// (path)->

@@ -18,8 +18,8 @@
   "ResourceOrderSettings": [
     {"name":"trace","order":1,"path":"scripts/trace/trace.yy",},
     {"name":"fnt_test","order":1,"path":"fonts/fnt_test/fnt_test.yy",},
-    {"name":"spr_cursor_dir","path":"sprites/spr_cursor_dir/spr_cursor_dir.yy","order":2,},
     {"name":"native_cursor_v1_compat","order":2,"path":"extensions/native_cursor_v1_compat/native_cursor_v1_compat.yy",},
+    {"name":"spr_cursor_dir","order":2,"path":"sprites/spr_cursor_dir/spr_cursor_dir.yy",},
     {"name":"rm_test","order":1,"path":"rooms/rm_test/rm_test.yy",},
     {"name":"spr_cursor_stripes","order":1,"path":"sprites/spr_cursor_stripes/spr_cursor_stripes.yy",},
     {"name":"native_cursor","order":1,"path":"extensions/native_cursor/native_cursor.yy",},

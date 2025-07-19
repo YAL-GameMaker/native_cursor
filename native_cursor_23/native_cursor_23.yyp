@@ -32,14 +32,14 @@
   "isEcma": false,
   "LibraryEmitters": [],
   "MetaData": {
-    "IDEVersion": "2023.2.1.75",
+    "IDEVersion": "2023.11.1.129",
   },
   "resources": [
     {"id":{"name":"trace","path":"scripts/trace/trace.yy",},},
     {"id":{"name":"fnt_test","path":"fonts/fnt_test/fnt_test.yy",},},
     {"id":{"name":"obj_test","path":"objects/obj_test/obj_test.yy",},},
     {"id":{"name":"native_cursor_v1_compat","path":"extensions/native_cursor_v1_compat/native_cursor_v1_compat.yy",},},
-    {"id":{"name":"spr_cursor_dir","path":"sprites/spr_cursor_dir/spr_cursor_dir.yy",},"order":0,},
+    {"id":{"name":"spr_cursor_dir","path":"sprites/spr_cursor_dir/spr_cursor_dir.yy",},},
     {"id":{"name":"rm_test","path":"rooms/rm_test/rm_test.yy",},},
     {"id":{"name":"spr_cursor_stripes","path":"sprites/spr_cursor_stripes/spr_cursor_stripes.yy",},},
     {"id":{"name":"spr_cursor","path":"sprites/spr_cursor/spr_cursor.yy",},},
@@ -49,6 +49,7 @@
   "RoomOrderNodes": [
     {"roomId":{"name":"rm_test","path":"rooms/rm_test/rm_test.yy",},},
   ],
+  "templateType": null,
   "TextureGroups": [
     {"resourceType":"GMTextureGroup","resourceVersion":"1.3","name":"Default","autocrop":true,"border":2,"compressFormat":"bz2","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"targets":-1,},
   ],

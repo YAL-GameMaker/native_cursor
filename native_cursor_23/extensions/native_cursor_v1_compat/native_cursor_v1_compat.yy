@@ -18,7 +18,7 @@
   "exportToGame": true,
   "extensionVersion": "0.0.1",
   "files": [
-    {"resourceType":"GMExtensionFile","resourceVersion":"1.0","name":"","constants":[],"copyToTargets":-1,"filename":"native_cursor_compat.gml","final":"","functions":[
+    {"resourceType":"GMExtensionFile","resourceVersion":"1.0","name":"native_cursor_compat.gml","constants":[],"copyToTargets":-1,"filename":"native_cursor_compat.gml","final":"","functions":[
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_compat_preinit","argCount":0,"args":[],"documentation":"","externalName":"native_cursor_compat_preinit","help":"","hidden":true,"kind":11,"returnType":2,},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_set_cursor_normal","argCount":0,"args":[],"documentation":"","externalName":"window_set_cursor_normal","help":"","hidden":true,"kind":11,"returnType":2,},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_set_cursor_sprite","argCount":2,"args":[
@@ -44,7 +44,7 @@
         {"name":"window_set_cursor_sprite","path":"extensions/native_cursor_v1_compat/native_cursor_v1_compat.yy",},
         {"name":"window_set_cursor_sprite_ext","path":"extensions/native_cursor_v1_compat/native_cursor_v1_compat.yy",},
         {"name":"window_set_cursor_surface","path":"extensions/native_cursor_v1_compat/native_cursor_v1_compat.yy",},
-      ],"origname":"","ProxyFiles":[],"tags":[],"uncompress":false,},
+      ],"origname":"","ProxyFiles":[],"uncompress":false,"usesRunnerInterface":false,},
   ],
   "gradleinject": "",
   "hasConvertedCodeInjection": true,

@@ -1,0 +1,5 @@
+#define native_cursor_preinit_gmcallback
+gmcallback__native_cursor__buffer_get_address(0);
+
+#define gmcallback__native_cursor__buffer_get_address
+return buffer_get_address(argument0);

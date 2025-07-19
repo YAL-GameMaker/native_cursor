@@ -1,0 +1,6 @@
+--js native_cursor_23/extensions/native_cursor/native_cursor.js
+--class-path native_cursor_js
+--main Extension
+--dce full
+--macro Postproc.main()
+#-D js-es=6

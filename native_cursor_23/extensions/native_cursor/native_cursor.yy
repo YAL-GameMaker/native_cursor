@@ -12,21 +12,22 @@
   "androidsourcedir": "",
   "author": "",
   "classname": "",
-  "copyToTargets": 113497714299118,
+  "copyToTargets": 3035426170322551022,
   "date": "2019-12-12T01:34:29",
   "description": "",
   "exportToGame": true,
   "extensionVersion": "1.0.0",
   "files": [
-    {"resourceType":"GMExtensionFile","resourceVersion":"1.0","name":"","constants":[
-        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"native_cursor_set_callback_mode_lowp","hidden":false,"value":"0",},
-        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"native_cursor_set_callback_mode_highp","hidden":false,"value":"1",},
-      ],"copyToTargets":9223372036854775807,"filename":"native_cursor.dll","final":"","functions":[
-        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_create_from_buffer_raw","argCount":2,"args":[
+    {"resourceType":"GMExtensionFile","resourceVersion":"1.0","name":"native_cursor.dll","constants":[],"copyToTargets":64,"filename":"native_cursor.dll","final":"","functions":[
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_create_from_buffer_raw","argCount":4,"args":[
             1,
             2,
+            2,
+            2,
           ],"documentation":"","externalName":"native_cursor_create_from_buffer_raw","help":"","hidden":true,"kind":11,"returnType":2,},
-        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_add_from_buffer_raw","argCount":2,"args":[
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_add_from_buffer_raw","argCount":4,"args":[
+            1,
+            2,
             1,
             2,
           ],"documentation":"","externalName":"native_cursor_add_from_buffer_raw","help":"","hidden":true,"kind":11,"returnType":2,},
@@ -39,38 +40,30 @@
             2,
             1,
           ],"documentation":"","externalName":"native_cursor_create_from_full_path_raw","help":"","hidden":true,"kind":11,"returnType":2,},
-        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_add_from_full_path_raw","argCount":3,"args":[
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_add_from_full_path_raw","argCount":2,"args":[
             1,
-            2,
             1,
           ],"documentation":"","externalName":"native_cursor_add_from_full_path_raw","help":"","hidden":true,"kind":11,"returnType":2,},
-        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_set_raw","argCount":2,"args":[
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_set_raw","argCount":1,"args":[
             1,
-            2,
           ],"documentation":"","externalName":"native_cursor_set_raw","help":"","hidden":true,"kind":11,"returnType":2,},
-        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_reset_raw","argCount":2,"args":[
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_reset_raw","argCount":0,"args":[],"documentation":"","externalName":"native_cursor_reset_raw","help":"","hidden":true,"kind":11,"returnType":2,},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_get_frame_raw","argCount":1,"args":[
             1,
-            2,
-          ],"documentation":"","externalName":"native_cursor_reset_raw","help":"","hidden":true,"kind":11,"returnType":2,},
-        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_get_frame_raw","argCount":2,"args":[
-            1,
-            2,
           ],"documentation":"","externalName":"native_cursor_get_frame_raw","help":"","hidden":true,"kind":11,"returnType":2,},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_set_frame_raw","argCount":2,"args":[
             1,
             2,
           ],"documentation":"","externalName":"native_cursor_set_frame_raw","help":"","hidden":true,"kind":11,"returnType":2,},
-        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_get_framerate_raw","argCount":2,"args":[
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_get_framerate_raw","argCount":1,"args":[
             1,
-            2,
           ],"documentation":"","externalName":"native_cursor_get_framerate_raw","help":"","hidden":true,"kind":11,"returnType":2,},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_set_framerate_raw","argCount":2,"args":[
             1,
             2,
           ],"documentation":"","externalName":"native_cursor_set_framerate_raw","help":"","hidden":true,"kind":11,"returnType":2,},
-        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_destroy_raw","argCount":2,"args":[
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_destroy_raw","argCount":1,"args":[
             1,
-            2,
           ],"documentation":"","externalName":"native_cursor_destroy_raw","help":"","hidden":true,"kind":11,"returnType":2,},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_update","argCount":0,"args":[],"documentation":"","externalName":"native_cursor_update","help":"native_cursor_update()","hidden":false,"kind":1,"returnType":2,},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_check_full_path","argCount":1,"args":[
@@ -80,23 +73,6 @@
             1,
             2,
           ],"documentation":"","externalName":"native_cursor_preinit_raw","help":"","hidden":true,"kind":11,"returnType":2,},
-        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_preinit_raw_cb1","argCount":4,"args":[
-            1,
-            1,
-            1,
-            1,
-          ],"documentation":"","externalName":"native_cursor_preinit_raw_cb1","help":"","hidden":true,"kind":11,"returnType":2,},
-        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_preinit_raw_cb2","argCount":1,"args":[
-            1,
-          ],"documentation":"","externalName":"native_cursor_preinit_raw_cb2","help":"","hidden":true,"kind":11,"returnType":2,},
-        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_preinit_raw_cb3","argCount":-1,"args":[],"documentation":"","externalName":"native_cursor_preinit_raw_cb3","help":"","hidden":true,"kind":11,"returnType":2,},
-        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_set_callback_raw","argCount":1,"args":[
-            2,
-          ],"documentation":"","externalName":"native_cursor_set_callback_raw","help":"","hidden":true,"kind":11,"returnType":2,},
-        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_set_callback_mode","argCount":1,"args":[
-            2,
-          ],"documentation":"","externalName":"native_cursor_set_callback_mode","help":"native_cursor_set_callback_mode(mode)","hidden":false,"kind":1,"returnType":2,},
-        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_get_callback_mode","argCount":0,"args":[],"documentation":"","externalName":"native_cursor_get_callback_mode","help":"native_cursor_get_callback_mode()","hidden":false,"kind":1,"returnType":2,},
       ],"init":"","kind":1,"order":[
         {"name":"native_cursor_create_from_buffer_raw","path":"extensions/native_cursor/native_cursor.yy",},
         {"name":"native_cursor_add_from_buffer_raw","path":"extensions/native_cursor/native_cursor.yy",},
@@ -115,14 +91,12 @@
         {"name":"native_cursor_preinit_raw","path":"extensions/native_cursor/native_cursor.yy",},
       ],"origname":"extensions\\native_cursor.dll","ProxyFiles":[
         {"resourceType":"GMProxyFile","resourceVersion":"1.0","name":"native_cursor_x64.dll","TargetMask":6,},
-      ],"tags":[],"uncompress":false,},
-    {"resourceType":"GMExtensionFile","resourceVersion":"1.0","name":"","constants":[],"copyToTargets":9223372036854775807,"filename":"native_cursor.gml","final":"","functions":[
+      ],"uncompress":false,"usesRunnerInterface":false,},
+    {"resourceType":"GMExtensionFile","resourceVersion":"1.0","name":"native_cursor.gml","constants":[],"copyToTargets":9223372036854775807,"filename":"native_cursor.gml","final":"","functions":[
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_prepare_buffer","argCount":1,"args":[
             2,
           ],"documentation":"","externalName":"native_cursor_prepare_buffer","help":"","hidden":true,"kind":11,"returnType":2,},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_preinit","argCount":0,"args":[],"documentation":"","externalName":"native_cursor_preinit","help":"","hidden":true,"kind":11,"returnType":2,},
-        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_set_callback","argCount":-1,"args":[],"documentation":"","externalName":"native_cursor_set_callback","help":"native_cursor_set_callback(?script)->","hidden":false,"kind":2,"returnType":2,},
-        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_get_callback","argCount":0,"args":[],"documentation":"","externalName":"native_cursor_get_callback","help":"native_cursor_get_callback()->","hidden":false,"kind":2,"returnType":2,},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_create_from_file","argCount":1,"args":[
             2,
           ],"documentation":"","externalName":"native_cursor_create_from_file","help":"native_cursor_create_from_file(path)->","hidden":false,"kind":2,"returnType":2,},
@@ -162,8 +136,8 @@
         {"name":"native_cursor_create_from_surface","path":"extensions/native_cursor/native_cursor.yy",},
         {"name":"native_cursor_add_from_surface","path":"extensions/native_cursor/native_cursor.yy",},
         {"name":"native_cursor_resolve_full_path","path":"extensions/native_cursor/native_cursor.yy",},
-      ],"origname":"extensions\\gml.gml","ProxyFiles":[],"tags":[],"uncompress":false,},
-    {"resourceType":"GMExtensionFile","resourceVersion":"1.0","name":"","constants":[],"copyToTargets":-1,"filename":"autogen.gml","final":"","functions":[
+      ],"origname":"extensions\\gml.gml","ProxyFiles":[],"uncompress":false,"usesRunnerInterface":false,},
+    {"resourceType":"GMExtensionFile","resourceVersion":"1.0","name":"autogen.gml","constants":[],"copyToTargets":194,"filename":"autogen.gml","final":"","functions":[
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_create_from_buffer","argCount":-1,"args":[],"documentation":"","externalName":"native_cursor_create_from_buffer","help":"native_cursor_create_from_buffer(buf:buffer, width:int, height:int, hotspot_x:int, hotspot_y:int, fps:number = 30)->","hidden":false,"kind":2,"returnType":2,},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_add_from_buffer","argCount":6,"args":[
             2,
@@ -215,7 +189,56 @@
         {"name":"native_cursor_get_framerate","path":"extensions/native_cursor/native_cursor.yy",},
         {"name":"native_cursor_set_framerate","path":"extensions/native_cursor/native_cursor.yy",},
         {"name":"native_cursor_destroy","path":"extensions/native_cursor/native_cursor.yy",},
-      ],"origname":"extensions\\autogen.gml","ProxyFiles":[],"tags":[],"uncompress":false,},
+      ],"origname":"extensions\\autogen.gml","ProxyFiles":[],"uncompress":false,"usesRunnerInterface":false,},
+    {"resourceType":"GMExtensionFile","resourceVersion":"1.0","name":"native_cursor.js","constants":[],"copyToTargets":-1,"filename":"native_cursor.js","final":"","functions":[
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_create_empty","argCount":0,"args":[],"documentation":"","externalName":"native_cursor_create_empty","help":"","hidden":true,"kind":11,"returnType":2,},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_create_from_buffer","argCount":6,"args":[
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+          ],"documentation":"","externalName":"native_cursor_create_from_buffer","help":"","hidden":true,"kind":11,"returnType":2,},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_add_from_buffer","argCount":6,"args":[
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+          ],"documentation":"","externalName":"native_cursor_add_from_buffer","help":"","hidden":true,"kind":11,"returnType":2,},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_destroy","argCount":1,"args":[
+            2,
+          ],"documentation":"","externalName":"native_cursor_destroy","help":"","hidden":true,"kind":11,"returnType":2,},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_update","argCount":0,"args":[],"documentation":"","externalName":"native_cursor_update","help":"","hidden":true,"kind":11,"returnType":2,},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_set","argCount":1,"args":[
+            2,
+          ],"documentation":"","externalName":"native_cursor_set","help":"","hidden":true,"kind":11,"returnType":2,},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_reset","argCount":0,"args":[],"documentation":"","externalName":"native_cursor_reset","help":"","hidden":true,"kind":11,"returnType":2,},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_get_frame","argCount":1,"args":[
+            2,
+          ],"documentation":"","externalName":"native_cursor_get_frame","help":"","hidden":true,"kind":11,"returnType":2,},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_set_frame","argCount":2,"args":[
+            2,
+            2,
+          ],"documentation":"","externalName":"native_cursor_set_frame","help":"","hidden":true,"kind":11,"returnType":2,},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_get_framerate","argCount":1,"args":[
+            2,
+          ],"documentation":"","externalName":"native_cursor_get_framerate","help":"","hidden":true,"kind":11,"returnType":2,},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_set_framerate","argCount":2,"args":[
+            2,
+            2,
+          ],"documentation":"","externalName":"native_cursor_set_framerate","help":"","hidden":true,"kind":11,"returnType":2,},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_preinit_raw","argCount":2,"args":[
+            2,
+            2,
+          ],"documentation":"","externalName":"native_cursor_preinit_raw","help":"","hidden":true,"kind":11,"returnType":2,},
+      ],"init":"","kind":5,"order":[],"origname":"","ProxyFiles":[],"uncompress":false,"usesRunnerInterface":false,},
+    {"resourceType":"GMExtensionFile","resourceVersion":"1.0","name":"native_cursor_js.gml","constants":[],"copyToTargets":32,"filename":"native_cursor_js.gml","final":"","functions":[
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"native_cursor_preinit_gmcallback","argCount":0,"args":[],"documentation":"","externalName":"native_cursor_preinit_gmcallback","help":"","hidden":true,"kind":11,"returnType":2,},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"gmcallback__native_cursor__buffer_get_address","argCount":1,"args":[],"documentation":"","externalName":"gmcallback__native_cursor__buffer_get_address","help":"","hidden":true,"kind":11,"returnType":2,},
+      ],"init":"","kind":2,"order":[],"origname":"","ProxyFiles":[],"uncompress":false,"usesRunnerInterface":false,},
   ],
   "gradleinject": "",
   "hasConvertedCodeInjection": true,

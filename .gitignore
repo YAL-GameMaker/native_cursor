@@ -4,6 +4,7 @@
 
 */extensions/*/*.cpp
 */extensions/*/*.dll
+*/extensions/*/*.js
 native_cursor.gmx/extensions/*/*.gml
 native_cursor_yy/extensions/*/*.gml
 */datafiles/native_cursor.html
