@@ -12,15 +12,16 @@ using namespace std;
 
 #define dllg /* tag */
 
-/*#if defined(_WINDOWS)
-#define dllx extern "C" __declspec(dllexport)
-#elif defined(GNUC)
-#define dllx extern "C" __attribute__ ((visibility("default")))
-#else
-#define dllx extern "C"
-#endif*/
+#if defined(_WINDOWS)
 #define dllx extern "C" __declspec(dllexport)
 #define dllm __declspec(dllexport)
+#elif defined(GNUC)
+#define dllx extern "C" __attribute__ ((visibility("default")))
+#define dllx __attribute__ ((visibility("default")))
+#else
+#define dllx extern "C"
+#define dllm
+#endif
 
 #ifdef _WINDEF_
 typedef HWND GAME_HWND;

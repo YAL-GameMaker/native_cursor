@@ -2,6 +2,37 @@
 /// @author YellowAfterlife
 
 #include "stdafx.h"
+#ifndef _WINDOWS
+#include <X11/Xlib.h>
+#include <X11/Xcursor/Xcursor.h>
+#include <chrono>
+#include <cstdlib>
+#endif
+
+#ifdef _WINDOWS
+typedef HCURSOR ncCursor;
+#define ncNoCursor NULL
+typedef HBITMAP ncBitmap;
+#define ncNoBitmap NULL
+#define getTimer GetTickCount64()
+#define ncFree ::free
+#else
+typedef Cursor ncCursor;
+#define ncNoCursor 0
+typedef XcursorImage* ncBitmap;
+#define ncNoBitmap nullptr
+inline uint64_t GetTickCount64() {
+    auto now = chrono::system_clock::now();
+    auto duration = now.time_since_epoch();
+    return (uint64_t)chrono::duration_cast<chrono::milliseconds>(duration).count();
+}
+#define ncFree std::free
+static Display* ncDisplay = NULL;
+static Window ncWindow = 0;
+#endif
+#ifndef _BUILD
+#define dllx extern "C"
+#endif
 
 struct native_cursor {
 	int count;
@@ -10,8 +41,8 @@ struct native_cursor {
 	uint64_t timeOffset;
 	double timeMult;
 	double framerate;
-	HCURSOR* cursors;
-	HBITMAP* bitmaps;
+	ncCursor* cursors;
+	ncBitmap* bitmaps;
 	uint8_t** pixelArrays;
 	inline void init(int _count) {
 		frameStart = 0;
@@ -20,12 +51,12 @@ struct native_cursor {
 		timeOffset = 0;
 		timeMult = 30;
 		framerate = 30;
-		bitmaps = malloc_arr<HBITMAP>(_count);
-		cursors = malloc_arr<HCURSOR>(_count);
+		bitmaps = malloc_arr<ncBitmap>(_count);
+		cursors = malloc_arr<ncCursor>(_count);
 		pixelArrays = malloc_arr<uint8_t*>(_count);
 		for (int i = 0; i < _count; i++) {
-			bitmaps[i] = nullptr;
-			cursors[i] = nullptr;
+			bitmaps[i] = ncNoBitmap;
+			cursors[i] = ncNoCursor;
 			pixelArrays[i] = nullptr;
 		}
 	}
@@ -37,26 +68,26 @@ struct native_cursor {
 		auto start = count;
 		auto newcount = start + _count;
 		count = newcount;
-		cursors = realloc_arr<HCURSOR>(cursors, newcount);
-		bitmaps = realloc_arr<HBITMAP>(bitmaps, newcount);
+		cursors = realloc_arr<ncCursor>(cursors, newcount);
+		bitmaps = realloc_arr<ncBitmap>(bitmaps, newcount);
 		pixelArrays = realloc_arr<uint8_t*>(pixelArrays, newcount);
 		for (int i = start; i < newcount; i++) {
-			cursors[i] = nullptr;
-			bitmaps[i] = nullptr;
+			bitmaps[i] = ncNoCursor;
+			cursors[i] = ncNoCursor;
 			pixelArrays[i] = nullptr;
 		}
 		return start;
 	}
 	inline void clear() {
-		cursors = NULL;
-		bitmaps = NULL;
+		cursors = nullptr;
+		bitmaps = nullptr;
 		pixelArrays = nullptr;
 	}
 	inline int getCurrentFrame() {
 		if (count == 0) return -1;
 		auto t = GetTickCount64() - timeStart;
 		auto f = t * timeMult;
-		#if (_M_IX86 == 600)
+		#if defined(_WINDOWS) && (_M_IX86 == 600)
 		// I don't want to implement all_rem myself
 		auto fi = ((int)f) % count;
 		if (fi < 0) fi += count;
@@ -67,56 +98,70 @@ struct native_cursor {
 		//trace("cursor %d/%d->%x", fi, cur->count, cur->cursors[fi]);
 		return (int)fi;
 	}
-	inline HCURSOR getCurrentCursor() {
+	inline ncCursor getCurrentCursor() {
 		auto fi = getCurrentFrame();
-		if (fi < 0) return NULL;
+		if (fi < 0) return ncNoCursor;
 		return cursors[fi];
 	}
 	inline void free() {
 		auto n = count;
 		if (cursors) {
-			for (int i = 0; i < n; i++) {
-				if (cursors[i]) DestroyCursor(cursors[i]);
+			for (int i = 0; i < n; i++) if (cursors[i]) {
+				#ifdef _WINDOWS
+				DestroyCursor(cursors[i]);
+				#else
+				XFreeCursor(ncDisplay, cursors[i]);
+				#endif
 			}
-			::free(cursors);
+			ncFree(cursors);
 		}
 		if (bitmaps) {
-			for (int i = 0; i < n; i++) {
-				if (bitmaps[i]) DeleteObject(bitmaps[i]);
+			for (int i = 0; i < n; i++) if (bitmaps[i]) {
+				#ifdef _WINDOWS
+				DeleteObject(bitmaps[i]);
+				#else
+				XcursorImageDestroy(bitmaps[i]);
+				#endif
 			}
-			::free(bitmaps);
+			ncFree(bitmaps);
 		}
 		if (pixelArrays) {
 			for (int i = 0; i < n; i++) {
-				if (pixelArrays[i]) ::free(pixelArrays[i]);
+				if (pixelArrays[i]) ncFree(pixelArrays[i]);
 			}
-			::free(pixelArrays);
+			ncFree(pixelArrays);
 		}
 		clear();
 	}
 };
 struct {
 	native_cursor* cursor;
-	HCURSOR hcursor;
+	ncCursor hcursor;
 	int x, y;
 	bool moved;
 	bool inbound;
+	#ifdef _WINDOWS
 	LPARAM lastLPARAM;
 	WPARAM lastWPARAM;
+	#endif
 	inline void init() {
 		cursor = nullptr;
-		hcursor = NULL;
+		hcursor = ncNoCursor;
 		x = 0; y = 0;
 		moved = false;
 		inbound = false;
+		#ifdef _WINDOWS
 		lastLPARAM = 0;
 		lastWPARAM = 0;
+		#endif
 	}
 } current;
 
 static bool SwapRedBlue_needed;
-void SwapRedBlue(BYTE* buf, size_t count) {
+void SwapRedBlue(uint8_t* buf, size_t count) {
+	#ifdef _WINDOWS
 	if (!SwapRedBlue_needed) return;
+	#endif
 	size_t i = 0;
 	const size_t count_nand_15 = count & ~15;
 	while (i < count_nand_15) {
@@ -134,15 +179,23 @@ bool native_cursor_apply_impl(bool force) {
 	if (native_cursor_apply_impl_state > 0) force = true;
 	auto cur = current.cursor;
 	if (cur == nullptr || cur->count <= 0) return false;
+	#ifdef _WINDOWS
 	if (!current.inbound) return false;
+	#endif
 	auto hc = cur->getCurrentCursor();
 	if (!force && hc == current.hcursor) return true;
 	current.hcursor = hc;
+	#ifdef _WINDOWS
 	SetCursor(hc);
+	#else
+	XDefineCursor(ncDisplay, ncWindow, hc);
+	XFlush(ncDisplay);
+	#endif
 	native_cursor_apply_impl_state = 2;
 	return true;
 }
 
+#ifdef _WINDOWS
 HWND game_window;
 WNDPROC wndproc_base;
 LRESULT CALLBACK wndproc_hook(HWND hwnd, UINT msg, WPARAM wp, LPARAM lp) {
@@ -180,6 +233,8 @@ LRESULT CALLBACK wndproc_hook(HWND hwnd, UINT msg, WPARAM wp, LPARAM lp) {
 	}
 	return CallWindowProc(wndproc_base, hwnd, msg, wp, lp);
 }
+#endif
+
 ///
 dllx void native_cursor_update() {
 	auto apply = true;
@@ -198,6 +253,7 @@ uint8_t* CreateBgraFromGmPixels(uint8_t* source, size_t size) {
 	SwapRedBlue(pixels, size);
 	return pixels;
 }
+#ifdef _WINDOWS
 HBITMAP CreateBitmapFromBGRA(uint8_t* pixels, int width, int height) {
 	auto bitmap = CreateBitmap(width, height, 1, 32, nullptr);
 	auto dc = GetDC(NULL);
@@ -256,6 +312,49 @@ dllg void native_cursor_add_from_buffer(gml_ptr<native_cursor> cursor, gml_buffe
 	cursor->cursors[frame] = hcursor;
 	if (hcursor == NULL) trace("Failed to create cursor, GetLastError=%d", GetLastError());
 }
+#else
+dllg gml_ptr<native_cursor> native_cursor_create_from_buffer(gml_buffer buf, int width, int height, int hotspot_x, int hotspot_y, double fps = 30) {
+	auto cur = malloc_arr<native_cursor>(1);
+	auto size = (width * height * 4);
+	if (buf.size() < size) return nullptr;
+	//
+	cur->init(1);
+	cur->setFramerate(fps);
+	//
+	auto image = XcursorImageCreate(width, height);
+	image->xhot = hotspot_x;
+	image->yhot = hotspot_y;
+	//
+	auto source = buf.data();
+	auto target = image->pixels;
+	memcpy(target, source, size);
+	SwapRedBlue((uint8_t*)target, size);
+	//
+	auto cursor = XcursorImageLoadCursor(ncDisplay, image);
+	cur->cursors[0] = cursor;
+	cur->bitmaps[0] = image;
+	return cur;
+
+}
+dllg void native_cursor_add_from_buffer(gml_ptr<native_cursor> cursor, gml_buffer buf, int width, int height, int hotspot_x, int hotspot_y) {
+	auto size = (width * height * 4);
+	if (buf.size() < size) return;
+	auto frame = cursor->addFrames(1);
+	//
+	auto image = XcursorImageCreate(width, height);
+	image->xhot = hotspot_x;
+	image->yhot = hotspot_y;
+	//
+	auto source = buf.data();
+	auto target = image->pixels;
+	memcpy(target, source, size);
+	SwapRedBlue((uint8_t*)target, size);
+	//
+	auto ncc = XcursorImageLoadCursor(ncDisplay, image);
+	cursor->cursors[frame] = ncc;
+	cursor->bitmaps[frame] = image;
+}
+#endif
 
 dllg gml_ptr<native_cursor> native_cursor_create_empty() {
 	auto cur = malloc_arr<native_cursor>(1);
@@ -264,30 +363,43 @@ dllg gml_ptr<native_cursor> native_cursor_create_empty() {
 }
 
 dllg gml_ptr<native_cursor> native_cursor_create_from_full_path(const char* path) {
+	#ifdef _WINDOWS
 	auto wpathSize = MultiByteToWideChar(CP_UTF8, 0, path, -1, NULL, 0);
 	auto wpath = malloc_arr<wchar_t>(wpathSize);
 	MultiByteToWideChar(CP_UTF8, 0, path, -1, wpath, wpathSize);
 	auto cur = malloc_arr<native_cursor>(1);
 	cur->init(1);
 	cur->cursors[0] = LoadCursorFromFileW(wpath);
-	::free(wpath);
+	ncFree(wpath);
 	return cur;
+	#else
+	return nullptr;
+	#endif
 }
 dllg void native_cursor_add_from_full_path(gml_ptr<native_cursor> cursor, const char* path) {
+	#ifdef _WINDOWS
 	auto wpathSize = MultiByteToWideChar(CP_UTF8, 0, path, -1, NULL, 0);
 	auto wpath = malloc_arr<wchar_t>(wpathSize);
 	MultiByteToWideChar(CP_UTF8, 0, path, -1, wpath, wpathSize);
 	auto i = cursor->addFrames(1);
 	cursor->cursors[i] = LoadCursorFromFileW(wpath);
-	::free(wpath);
+	ncFree(wpath);
+	return true;
+	#else
+	//return false;
+	#endif
 }
 dllx double native_cursor_check_full_path(const char* path) {
+	#ifdef _WINDOWS
 	auto wpathSize = MultiByteToWideChar(CP_UTF8, 0, path, -1, NULL, 0);
 	auto wpath = malloc_arr<wchar_t>(wpathSize);
 	MultiByteToWideChar(CP_UTF8, 0, path, -1, wpath, wpathSize);
 	auto attrs = GetFileAttributesW(wpath);
-	::free(wpath);
+	ncFree(wpath);
 	return attrs != INVALID_FILE_ATTRIBUTES && ((attrs & FILE_ATTRIBUTE_DIRECTORY) == 0);
+	#else
+	return 0;
+	#endif
 }
 
 dllg void native_cursor_set(gml_ptr<native_cursor> cursor) {
@@ -303,9 +415,14 @@ dllg void native_cursor_reset() {
 		current.cursor->timeOffset = GetTickCount64() - current.cursor->timeStart;
 	}
 	current.cursor = nullptr;
-	current.hcursor = nullptr;
+	current.hcursor = ncNoCursor;
+	#ifdef _WINDOWS
 	SetCursor(NULL);
 	CallWindowProc(wndproc_base, game_window, WM_SETCURSOR, current.lastWPARAM, current.lastLPARAM);
+	#else
+	XUndefineCursor(ncDisplay, ncWindow);
+	XFlush(ncDisplay);
+	#endif
 }
 
 dllg int native_cursor_get_frame(gml_ptr<native_cursor> cursor) {
@@ -331,10 +448,7 @@ dllg void native_cursor_set_framerate(gml_ptr<native_cursor> cursor, int fps) {
 
 dllg void native_cursor_destroy(gml_ptr_destroy<native_cursor> cursor) {
 	if (cursor == current.cursor) {
-		current.cursor = nullptr;
-		current.hcursor = NULL;
-		SetCursor(NULL);
-		CallWindowProc(wndproc_base, game_window, WM_SETCURSOR, current.lastWPARAM, current.lastLPARAM);
+		native_cursor_reset();
 	}
 	cursor->free();
 }
@@ -342,16 +456,23 @@ dllg void native_cursor_destroy(gml_ptr_destroy<native_cursor> cursor) {
 
 dllx void native_cursor_preinit_raw(void* _hwnd_as_ptr, double _swapBR) {
 	SwapRedBlue_needed = _swapBR > 0.5;
+	#ifdef _WINDOWS
 	game_window = (HWND)_hwnd_as_ptr;
 	if (wndproc_base == nullptr) {
 		wndproc_base = (WNDPROC)SetWindowLongPtr(game_window, GWLP_WNDPROC, (LONG_PTR)wndproc_hook);
 	}
+	#else
+	ncDisplay = XOpenDisplay(NULL);
+	ncWindow = (Window)_hwnd_as_ptr;
+	#endif
 }
 
 
 bool native_cursor_preinit_statics() {
 	SwapRedBlue_needed = false;
+	#ifdef _WINDOWS
 	wndproc_base = nullptr;
+	#endif
 	current.init();
 	return true;
 }
