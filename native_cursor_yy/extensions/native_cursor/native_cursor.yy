@@ -31,22 +31,7 @@
                 
             ],
             "constants": [
-                {
-                    "id": "5a4a5711-5d53-8658-cae0-3480ba604497",
-                    "modelName": "GMExtensionConstant",
-                    "mvc": "1.0",
-                    "constantName": "native_cursor_set_callback_mode_lowp",
-                    "hidden": false,
-                    "value": "0"
-                },
-                {
-                    "id": "cf3457bd-32cf-1655-07ef-c8b28beb28a4",
-                    "modelName": "GMExtensionConstant",
-                    "mvc": "1.0",
-                    "constantName": "native_cursor_set_callback_mode_highp",
-                    "hidden": false,
-                    "value": "1"
-                }
+                
             ],
             "copyToTargets": 9223372036854775807,
             "filename": "native_cursor.dll",
@@ -56,9 +41,11 @@
                     "id": "a5b5a8ee-0806-d3a7-f9d3-ad192606ee38",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
-                    "argCount": 2,
+                    "argCount": 4,
                     "args": [
                         1,
+                        2,
+                        2,
                         2
                     ],
                     "externalName": "native_cursor_create_from_buffer_raw",
@@ -72,8 +59,10 @@
                     "id": "87978acc-a2ac-7985-062c-da6e5860558a",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
-                    "argCount": 2,
+                    "argCount": 4,
                     "args": [
+                        1,
+                        2,
                         1,
                         2
                     ],
@@ -121,10 +110,9 @@
                     "id": "36adce35-60ed-2561-4789-747a1413a04a",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
-                    "argCount": 3,
+                    "argCount": 2,
                     "args": [
                         1,
-                        2,
                         1
                     ],
                     "externalName": "native_cursor_add_from_full_path_raw",
@@ -138,10 +126,9 @@
                     "id": "3c2c3177-5d53-863e-bd97-2591a1bd8851",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
-                    "argCount": 2,
+                    "argCount": 1,
                     "args": [
-                        1,
-                        2
+                        1
                     ],
                     "externalName": "native_cursor_set_raw",
                     "help": "",
@@ -154,10 +141,9 @@
                     "id": "cc0764e8-72cf-7037-2f98-aa9a6623a0d3",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
-                    "argCount": 2,
+                    "argCount": 0,
                     "args": [
-                        1,
-                        2
+                        
                     ],
                     "externalName": "native_cursor_reset_raw",
                     "help": "",
@@ -170,10 +156,9 @@
                     "id": "96869bdd-6e60-b594-f9d3-f84c78bd66bb",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
-                    "argCount": 2,
+                    "argCount": 1,
                     "args": [
-                        1,
-                        2
+                        1
                     ],
                     "externalName": "native_cursor_get_frame_raw",
                     "help": "",
@@ -202,10 +187,9 @@
                     "id": "fd167560-1a47-6128-d4cd-1fcbec87e479",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
-                    "argCount": 2,
+                    "argCount": 1,
                     "args": [
-                        1,
-                        2
+                        1
                     ],
                     "externalName": "native_cursor_get_framerate_raw",
                     "help": "",
@@ -234,10 +218,9 @@
                     "id": "4b5b4600-3b35-e049-4268-cb7f4d60dd06",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
-                    "argCount": 2,
+                    "argCount": 1,
                     "args": [
-                        1,
-                        2
+                        1
                     ],
                     "externalName": "native_cursor_destroy_raw",
                     "help": "",
@@ -291,99 +274,6 @@
                     "kind": 11,
                     "name": "native_cursor_preinit_raw",
                     "returnType": 2
-                },
-                {
-                    "id": "d2c2df99-2a24-f1d0-9fb5-9e2a1560994f",
-                    "modelName": "GMExtensionFunction",
-                    "mvc": "1.0",
-                    "argCount": 4,
-                    "args": [
-                        1,
-                        1,
-                        1,
-                        1
-                    ],
-                    "externalName": "native_cursor_preinit_raw_cb1",
-                    "help": "",
-                    "hidden": true,
-                    "kind": 11,
-                    "name": "native_cursor_preinit_raw_cb1",
-                    "returnType": 2
-                },
-                {
-                    "id": "b3f89b8e-d5b8-9ed4-13dc-2fc05da6f50e",
-                    "modelName": "GMExtensionFunction",
-                    "mvc": "1.0",
-                    "argCount": 1,
-                    "args": [
-                        1
-                    ],
-                    "externalName": "native_cursor_preinit_raw_cb2",
-                    "help": "",
-                    "hidden": true,
-                    "kind": 11,
-                    "name": "native_cursor_preinit_raw_cb2",
-                    "returnType": 2
-                },
-                {
-                    "id": "b4a4b9ff-919f-4ab6-bd97-61d5e1f94499",
-                    "modelName": "GMExtensionFunction",
-                    "mvc": "1.0",
-                    "argCount": -1,
-                    "args": [
-                        
-                    ],
-                    "externalName": "native_cursor_preinit_raw_cb3",
-                    "help": "",
-                    "hidden": true,
-                    "kind": 11,
-                    "name": "native_cursor_preinit_raw_cb3",
-                    "returnType": 2
-                },
-                {
-                    "id": "befa21e3-1268-a716-85fe-57d9363d1957",
-                    "modelName": "GMExtensionFunction",
-                    "mvc": "1.0",
-                    "argCount": 1,
-                    "args": [
-                        2
-                    ],
-                    "externalName": "native_cursor_set_callback_raw",
-                    "help": "",
-                    "hidden": true,
-                    "kind": 11,
-                    "name": "native_cursor_set_callback_raw",
-                    "returnType": 2
-                },
-                {
-                    "id": "e1f1ecaa-4c42-97e3-f9d3-ad192aca66bc",
-                    "modelName": "GMExtensionFunction",
-                    "mvc": "1.0",
-                    "argCount": 1,
-                    "args": [
-                        2
-                    ],
-                    "externalName": "native_cursor_set_callback_mode",
-                    "help": "native_cursor_set_callback_mode(mode)",
-                    "hidden": false,
-                    "kind": 1,
-                    "name": "native_cursor_set_callback_mode",
-                    "returnType": 2
-                },
-                {
-                    "id": "d3f89bdb-d4a9-da91-4aef-48bbb5490a5b",
-                    "modelName": "GMExtensionFunction",
-                    "mvc": "1.0",
-                    "argCount": 0,
-                    "args": [
-                        
-                    ],
-                    "externalName": "native_cursor_get_callback_mode",
-                    "help": "native_cursor_get_callback_mode()",
-                    "hidden": false,
-                    "kind": 1,
-                    "name": "native_cursor_get_callback_mode",
-                    "returnType": 2
                 }
             ],
             "init": "",
@@ -436,36 +326,6 @@
                     "hidden": true,
                     "kind": 11,
                     "name": "native_cursor_preinit",
-                    "returnType": 2
-                },
-                {
-                    "id": "0a2c4e11-fcdc-91ea-f5ee-9a5d38c92e56",
-                    "modelName": "GMExtensionFunction",
-                    "mvc": "1.0",
-                    "argCount": -1,
-                    "args": [
-                        
-                    ],
-                    "externalName": "native_cursor_set_callback",
-                    "help": "native_cursor_set_callback(?script)->",
-                    "hidden": false,
-                    "kind": 2,
-                    "name": "native_cursor_set_callback",
-                    "returnType": 2
-                },
-                {
-                    "id": "0d1675bd-a2cf-347e-b232-856194b7e4e0",
-                    "modelName": "GMExtensionFunction",
-                    "mvc": "1.0",
-                    "argCount": 0,
-                    "args": [
-                        
-                    ],
-                    "externalName": "native_cursor_get_callback",
-                    "help": "native_cursor_get_callback()->",
-                    "hidden": false,
-                    "kind": 2,
-                    "name": "native_cursor_get_callback",
                     "returnType": 2
                 },
                 {

@@ -10,16 +10,19 @@ class NativeCursorFrame {
 	public static var canvas:CanvasElement;
 	public static var style:StyleElement;
 	public static var styleSheet:CSSStyleSheet;
-	static inline var attr = "data-cursor";
+	static inline var attrCursor = "data-cursor";
 	static var nextID = 0;
+	//
+	static var count = 0;
 	//
 	public var id:String;
 	public var selector:String;
 	public function new(dataURL:String) {
 		id = Std.string(nextID++);
-		selector = 'canvas[$attr="$id"]';
+		selector = 'canvas[$attrCursor="$id"]';
 		var rule = '$selector { cursor: url($dataURL), default; }';
 		styleSheet.insertRule(rule, styleSheet.cssRules.length);
+		style.dataset.count = "" + (++count);
 	}
 	public function destroy() {
 		var rules = styleSheet.cssRules;
@@ -31,10 +34,11 @@ class NativeCursorFrame {
 				break;
 			}
 		}
+		style.dataset.count = "" + (--count);
 	}
 	public static var prevCursor = null;
 	public function apply() {
-		canvas.setAttribute(attr, id);
+		canvas.setAttribute(attrCursor, id);
 		var cur = canvas.style.cursor;
 		if (cur != "") {
 			prevCursor = cur;
@@ -42,7 +46,7 @@ class NativeCursorFrame {
 		}
 	}
 	public static function reset() {
-		canvas.removeAttribute(attr);
+		canvas.removeAttribute(attrCursor);
 		var pc = prevCursor;
 		if (pc != null) {
 			canvas.style.cursor = pc;
