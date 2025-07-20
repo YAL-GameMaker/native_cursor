@@ -2,13 +2,25 @@
 
 Native cursors for GameMaker!
 
-(on Windows. Later HTML5 - have to rewrite everything from scratch)
+**Supported versions:** GM2022+ and GM LTS
+
+**Supported platforms:**
+
+- Windows
+- Linux
+- HTML5
+
+Could possibly do Mac [like this](https://medium.com/@colleagueriley/rgfw-under-the-hood-mouse-and-window-icons-fb06a3b686ed),
+but - isn't that a lot of code for a custom cursor
 
 ## What's interesting here
 
-Just a bunch of WinAPI things, really. Made slightly more complex by the fact that I wanted this to be a tiny DLL.
+Cursor management on Windows and Linux is _kind of_ similar
+so I'm getting away with a bunch of `#ifdef`s.
 
-Did you know that if you do
+The code could be shorter, but for now it is what it is.
+
+Some things are there for a reason - for example, did you know that if you do
 ```cpp
 SetCursor(cursor);
 DestroyCursor(cursor);

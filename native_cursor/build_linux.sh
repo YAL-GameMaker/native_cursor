@@ -3,4 +3,4 @@ g++ -std=c++17 \
     -shared -fPIC \
     -D_LINUX -D_BUILD \
     -lX11 -lXcursor \
-    -o ../export/native_cursor.so
+    -o ../native_cursor_23/extensions/native_cursor/native_cursor.so
