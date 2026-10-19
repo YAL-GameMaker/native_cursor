@@ -94,6 +94,9 @@ if (_frame == undefined) {
     _start = _frame;
     _end = _frame;
 }
+// GMS >= 2.0:
+var _pair = gpu_get_blendmode_ext();
+//*/
 for (var i = _start; i <= _end; i++) {
     surface_set_target(_surf);
     draw_clear_alpha(c_black, 0);
@@ -112,6 +115,9 @@ for (var i = _start; i <= _end; i++) {
     
     native_cursor_add_from_surface(_cursor, _surf, _xoffset, _yoffset);
 }
+// GMS >= 2.0:
+gpu_set_blendmode_ext(_pair[0], _pair[1]);
+//*/
 surface_free(_surf);
 
 #define native_cursor_create_from_surface
