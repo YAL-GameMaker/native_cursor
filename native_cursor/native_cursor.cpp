@@ -277,8 +277,9 @@ HCURSOR CreateCursorFromBitmap(HBITMAP bitmap, int hotspot_x, int hotspot_y) {
 	inf.yHotspot = hotspot_y;
 	return (HCURSOR)CreateIconIndirect(&inf);
 }
-
+#endif
 dllg gml_ptr<native_cursor> native_cursor_create_from_buffer(gml_buffer buf, int width, int height, int hotspot_x, int hotspot_y, double fps = 30) {
+	#ifdef _WINDOWS
 	auto cur = malloc_arr<native_cursor>(1);
 	auto size = (width * height * 4);
 	if (buf.size() < size) return nullptr;
@@ -296,24 +297,7 @@ dllg gml_ptr<native_cursor> native_cursor_create_from_buffer(gml_buffer buf, int
 	cur->cursors[0] = cursor;
 	if (cursor == NULL) trace("Failed to create cursor, GetLastError=%d", GetLastError());
 	return cur;
-}
-dllg void native_cursor_add_from_buffer(gml_ptr<native_cursor> cursor, gml_buffer buf, int width, int height, int hotspot_x, int hotspot_y) {
-	auto size = (width * height * 4);
-	if (buf.size() < size) return;
-	auto frame = cursor->addFrames(1);
-	//
-	auto pixels = CreateBgraFromGmPixels(buf.data(), (size_t)size);
-	cursor->pixelArrays[frame] = pixels;
-	//
-	auto bitmap = CreateBitmapFromBGRA(pixels, width, height);
-	cursor->bitmaps[frame] = bitmap;
-	//
-	auto hcursor = CreateCursorFromBitmap(bitmap, hotspot_x, hotspot_y);
-	cursor->cursors[frame] = hcursor;
-	if (hcursor == NULL) trace("Failed to create cursor, GetLastError=%d", GetLastError());
-}
-#else
-dllg gml_ptr<native_cursor> native_cursor_create_from_buffer(gml_buffer buf, int width, int height, int hotspot_x, int hotspot_y, double fps = 30) {
+	#else
 	auto cur = malloc_arr<native_cursor>(1);
 	auto size = (width * height * 4);
 	if (buf.size() < size) return nullptr;
@@ -334,9 +318,24 @@ dllg gml_ptr<native_cursor> native_cursor_create_from_buffer(gml_buffer buf, int
 	cur->cursors[0] = cursor;
 	cur->bitmaps[0] = image;
 	return cur;
-
+	#endif
 }
 dllg void native_cursor_add_from_buffer(gml_ptr<native_cursor> cursor, gml_buffer buf, int width, int height, int hotspot_x, int hotspot_y) {
+	#ifdef _WINDOWS
+	auto size = (width * height * 4);
+	if (buf.size() < size) return;
+	auto frame = cursor->addFrames(1);
+	//
+	auto pixels = CreateBgraFromGmPixels(buf.data(), (size_t)size);
+	cursor->pixelArrays[frame] = pixels;
+	//
+	auto bitmap = CreateBitmapFromBGRA(pixels, width, height);
+	cursor->bitmaps[frame] = bitmap;
+	//
+	auto hcursor = CreateCursorFromBitmap(bitmap, hotspot_x, hotspot_y);
+	cursor->cursors[frame] = hcursor;
+	if (hcursor == NULL) trace("Failed to create cursor, GetLastError=%d", GetLastError());
+	#else
 	auto size = (width * height * 4);
 	if (buf.size() < size) return;
 	auto frame = cursor->addFrames(1);
@@ -353,8 +352,8 @@ dllg void native_cursor_add_from_buffer(gml_ptr<native_cursor> cursor, gml_buffe
 	auto ncc = XcursorImageLoadCursor(ncDisplay, image);
 	cursor->cursors[frame] = ncc;
 	cursor->bitmaps[frame] = image;
+	#endif
 }
-#endif
 
 dllg gml_ptr<native_cursor> native_cursor_create_empty() {
 	auto cur = malloc_arr<native_cursor>(1);
@@ -384,7 +383,6 @@ dllg void native_cursor_add_from_full_path(gml_ptr<native_cursor> cursor, const 
 	auto i = cursor->addFrames(1);
 	cursor->cursors[i] = LoadCursorFromFileW(wpath);
 	ncFree(wpath);
-	return true;
 	#else
 	//return false;
 	#endif
